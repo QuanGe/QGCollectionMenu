@@ -30,9 +30,14 @@
     return @[@"太阳",@"后裔",@"机会",@"宋钟基",@"韩国电视剧"];
 }
 
-- (NSString*)subVCClassStr
+- (NSArray*)subVCClassStrsForStoryBoard
 {
-    return @"QGSubViewController";
+    return @[@"QGSubViewController",@"QGSubViewController",@"QGSubViewController",@"QGSubViewController",@"QGSubViewController"];
+}
+
+- (NSArray*)subVCClassStrsForCode
+{
+    return @[];
 }
 
 @end

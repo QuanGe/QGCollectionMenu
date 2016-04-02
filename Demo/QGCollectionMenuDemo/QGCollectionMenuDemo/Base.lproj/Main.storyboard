@@ -18,8 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttf-DX-66U" customClass="QGCollectionMenu">
-                                <rect key="frame" x="0.0" y="181" width="550" height="341"/>
+                                <rect key="frame" x="0.0" y="181" width="250" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="GoC-zt-dTA"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="hwG-sU-blg"/>
                                 </connections>
@@ -32,6 +35,11 @@
                             <constraint firstAttribute="trailing" secondItem="ttf-DX-66U" secondAttribute="trailing" constant="50" id="a1R-Qb-iTe"/>
                             <constraint firstItem="ttf-DX-66U" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aZ8-1e-REy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="a1R-Qb-iTe"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="menu" destination="ttf-DX-66U" id="SXz-VO-4x8"/>
@@ -44,7 +52,7 @@
         <!--Sub View Controller-->
         <scene sceneID="otr-my-Txd">
             <objects>
-                <viewController id="Orz-5S-uvd" customClass="QGSubViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QGSubViewController" id="Orz-5S-uvd" customClass="QGSubViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n0W-1s-lg6"/>
                         <viewControllerLayoutGuide type="bottom" id="tSV-Xx-L4p"/>
@@ -60,7 +68,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.41568627450000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Q0G-2n-OE2" firstAttribute="centerY" secondItem="Q1J-Pt-JED" secondAttribute="centerY" id="Yhb-rZ-b8X"/>
                             <constraint firstItem="Q0G-2n-OE2" firstAttribute="centerX" secondItem="Q1J-Pt-JED" secondAttribute="centerX" id="jld-ho-9P5"/>

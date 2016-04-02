@@ -25,7 +25,24 @@
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ank-aI-JYA">
                     <rect key="frame" x="0.0" y="40" width="600" height="560"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LdU-WE-zAM">
+                            <rect key="frame" x="0.0" y="0.0" width="605" height="560"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tsF-Dz-wiB">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
                     <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="LdU-WE-zAM" secondAttribute="trailing" id="Uey-eS-RAR"/>
+                        <constraint firstItem="LdU-WE-zAM" firstAttribute="leading" secondItem="ank-aI-JYA" secondAttribute="leading" id="c1A-Oy-8CG"/>
+                        <constraint firstItem="LdU-WE-zAM" firstAttribute="top" secondItem="ank-aI-JYA" secondAttribute="top" id="hdH-0U-uln"/>
+                        <constraint firstAttribute="bottom" secondItem="LdU-WE-zAM" secondAttribute="bottom" id="iZf-Od-whk"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -41,6 +58,7 @@
             </constraints>
             <connections>
                 <outlet property="menuCollection" destination="oHV-Wb-pjn" id="Zsy-YS-T5l"/>
+                <outlet property="subVCCollection" destination="LdU-WE-zAM" id="QHy-BH-xi9"/>
                 <outlet property="subVCContainer" destination="ank-aI-JYA" id="jbP-Gi-rDF"/>
                 <outlet property="titleHeightConstraint" destination="Jfr-Co-88t" id="M76-X3-AXG"/>
             </connections>

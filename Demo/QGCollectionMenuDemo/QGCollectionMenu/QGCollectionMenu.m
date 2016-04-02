@@ -8,11 +8,14 @@
 
 #import "QGCollectionMenu.h"
 #import "QGCMCollectionViewCell.h"
+#import <objc/runtime.h>
 #define kMenuCell @"kQGMenuCell"
+#define kVCCell @"kQGVCCell"
 @interface QGCollectionMenu ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollection;
 @property (weak, nonatomic) IBOutlet UIView *subVCContainer;
+@property (weak, nonatomic) IBOutlet UICollectionView *subVCCollection;
 
 
 @property (nonatomic,readwrite,strong) UIView * line;
@@ -79,10 +82,20 @@
 
 - (void)initConfig
 {
+    //
     self.menuCollection.backgroundColor = [UIColor whiteColor];
     self.menuCollection.delegate = self;
     self.menuCollection.dataSource = self;
     [self.menuCollection registerNib:[UINib nibWithNibName:@"QGCMCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMenuCell];
+    
+    //
+    self.subVCCollection.backgroundColor = [UIColor whiteColor];
+    self.subVCCollection.delegate = self;
+    self.subVCCollection.dataSource = self;
+    self.subVCCollection.pagingEnabled = YES;
+    
+    //
+    
     self.titleNormalAtrributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0],
                                      NSFontAttributeName:[UIFont systemFontOfSize:13]};
     self.titleSelectAtrributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.8 green:0 blue:0 alpha:1.0],
@@ -101,6 +114,10 @@
     {
         NSLog(@"u must set datasoure before reload");
     }
+    else if(([self.dataSource subVCClassStrsForStoryBoard].count == 0 && [self.dataSource subVCClassStrsForCode].count == 0)||([self.dataSource subVCClassStrsForStoryBoard].count != 0 && [self.dataSource subVCClassStrsForCode].count != 0))
+    {
+        NSLog(@"u must return subVC class from the storyBoard or code");
+    }
     else
     {
         [self.menuCollection reloadData];
@@ -112,8 +129,12 @@
             }];
         });
         
-        for (NSString * title in [self.dataSource menumTitles]) {
-            NSLog(@"%@",self.subVCContainer);
+        for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForStoryBoard]) {
+            [self.subVCCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:subVCClassStr];
+        }
+        
+        for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForStoryBoard]) {
+            [self.subVCCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:subVCClassStr];
         }
     }
 }
@@ -126,10 +147,31 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    QGCMCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMenuCell forIndexPath:indexPath];
-    cell.titleLabel.attributedText =  [[NSAttributedString alloc] initWithString: [[self.dataSource menumTitles] objectAtIndex:indexPath.row] attributes:indexPath.row == self.tag? self.titleSelectAtrributes: self.titleNormalAtrributes];
-    cell.titleLabel.textAlignment = NSTextAlignmentCenter;
-    return cell;
+    if(self.menuCollection == collectionView)
+    {
+        QGCMCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMenuCell forIndexPath:indexPath];
+        cell.titleLabel.attributedText =  [[NSAttributedString alloc] initWithString: [[self.dataSource menumTitles] objectAtIndex:indexPath.row] attributes:indexPath.row == self.tag? self.titleSelectAtrributes: self.titleNormalAtrributes];
+        cell.titleLabel.textAlignment = NSTextAlignmentCenter;
+        return cell;
+        
+    }
+    else
+    {
+        NSString *subVCClassStr =  [[self.dataSource subVCClassStrsForCode].count==0?[self.dataSource subVCClassStrsForStoryBoard]:[self.dataSource subVCClassStrsForCode] objectAtIndex:indexPath.row];
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:subVCClassStr forIndexPath:indexPath];
+        if(cell.contentView.subviews.count == 0)
+        {
+            //UIViewController *childViewController = [[objc_getClass(([self.dataSource subVCClassStr]).UTF8String) alloc] init];
+            UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController* childViewController=[self.dataSource subVCClassStrsForCode].count==0?[mainStoryboard instantiateViewControllerWithIdentifier:subVCClassStr]:[[objc_getClass(subVCClassStr.UTF8String) alloc] init];
+            
+            
+            childViewController.view.frame = collectionView.frame;
+            [cell.contentView addSubview:childViewController.view];
+            [(UIViewController*)self.dataSource addChildViewController:childViewController];
+        }
+        return cell;
+    }
     
 }
 
@@ -139,7 +181,14 @@
                                                                                                 options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                                                                              attributes:self.titleNormalAtrributes
                                                                                                 context:nil];
-    return CGSizeMake(textRect.size.width+self.titleMargin, 40);
+    if(self.menuCollection == collectionView)
+    {
+        return CGSizeMake(textRect.size.width+self.titleMargin, 40);
+    }
+    else
+    {
+        return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height);
+    }
 }
 
 
@@ -163,5 +212,13 @@
         
     }];
 }
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
 @end

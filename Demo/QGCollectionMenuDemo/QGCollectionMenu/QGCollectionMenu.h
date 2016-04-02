@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 @protocol QGCollectionMenuDataSource <NSObject>
 @required
-
+//
 - (NSArray*)menumTitles;
-- (NSString*)subVCClassStr;
+//
+- (NSArray*)subVCClassStrsForStoryBoard;
+//
+- (NSArray*)subVCClassStrsForCode;
+//
 
 @end
 @interface QGCollectionMenu : UIView
