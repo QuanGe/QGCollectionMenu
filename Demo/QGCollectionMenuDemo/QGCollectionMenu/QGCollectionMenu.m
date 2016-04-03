@@ -170,6 +170,7 @@
             [cell.contentView addSubview:childViewController.view];
             [(UIViewController*)self.dataSource addChildViewController:childViewController];
         }
+        [self collectionView:self.menuCollection didSelectItemAtIndexPath:indexPath];
         return cell;
     }
     
@@ -211,6 +212,10 @@
         self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
         
     }];
+//    if(collectionView == self.menuCollection)
+//    {
+//        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//    }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
