@@ -170,7 +170,6 @@
             [cell.contentView addSubview:childViewController.view];
             [(UIViewController*)self.dataSource addChildViewController:childViewController];
         }
-        [self collectionView:self.menuCollection didSelectItemAtIndexPath:indexPath];
         return cell;
     }
     
@@ -200,22 +199,24 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.tag == indexPath.row)
-        return;
-    NSInteger last = self.tag;
-    self.tag = indexPath.row;
-    [collectionView reloadItemsAtIndexPaths:@[indexPath,[NSIndexPath indexPathForRow:last inSection:indexPath.section]]];
-    [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    
-    UICollectionViewCell *cell = [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    [UIView animateWithDuration:0.25 animations:^{
-        self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+    if(collectionView == self.menuCollection)
+    {
+        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         
-    }];
-//    if(collectionView == self.menuCollection)
-//    {
-//        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-//    }
+        if(self.tag == indexPath.row)
+            return;
+        NSInteger last = self.tag;
+        self.tag = indexPath.row;
+        [collectionView reloadItemsAtIndexPaths:@[indexPath,[NSIndexPath indexPathForRow:last inSection:indexPath.section]]];
+        [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        
+        UICollectionViewCell *cell = [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+            
+        }];
+
+    }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {

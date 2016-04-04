@@ -13,11 +13,11 @@
 		980385F31CAE1B1300736DE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 980385F11CAE1B1300736DE0 /* Main.storyboard */; };
 		980385F51CAE1B1300736DE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 980385F41CAE1B1300736DE0 /* Assets.xcassets */; };
 		980385F81CAE1B1300736DE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 980385F61CAE1B1300736DE0 /* LaunchScreen.storyboard */; };
-		980386011CAE1B5500736DE0 /* QGCollectionMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980386001CAE1B5500736DE0 /* QGCollectionMenu.xib */; };
-		980386041CAE1B7F00736DE0 /* QGCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 980386031CAE1B7F00736DE0 /* QGCollectionMenu.m */; };
-		980386071CAE27FA00736DE0 /* QGCMCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 980386061CAE27FA00736DE0 /* QGCMCollectionViewCell.m */; };
-		980386091CAE286200736DE0 /* QGCMCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980386081CAE286200736DE0 /* QGCMCollectionViewCell.xib */; };
 		9803860C1CAE340700736DE0 /* QGSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9803860B1CAE340700736DE0 /* QGSubViewController.m */; };
+		987686201CB2B15200DE745F /* QGCMCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9876861B1CB2B15200DE745F /* QGCMCollectionViewCell.m */; };
+		987686211CB2B15200DE745F /* QGCMCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9876861C1CB2B15200DE745F /* QGCMCollectionViewCell.xib */; };
+		987686221CB2B15200DE745F /* QGCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9876861E1CB2B15200DE745F /* QGCollectionMenu.m */; };
+		987686231CB2B15200DE745F /* QGCollectionMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,14 +31,14 @@
 		980385F41CAE1B1300736DE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		980385F71CAE1B1300736DE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		980385F91CAE1B1300736DE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		980386001CAE1B5500736DE0 /* QGCollectionMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QGCollectionMenu.xib; sourceTree = "<group>"; };
-		980386021CAE1B7F00736DE0 /* QGCollectionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGCollectionMenu.h; sourceTree = "<group>"; };
-		980386031CAE1B7F00736DE0 /* QGCollectionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGCollectionMenu.m; sourceTree = "<group>"; };
-		980386051CAE27FA00736DE0 /* QGCMCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGCMCollectionViewCell.h; sourceTree = "<group>"; };
-		980386061CAE27FA00736DE0 /* QGCMCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGCMCollectionViewCell.m; sourceTree = "<group>"; };
-		980386081CAE286200736DE0 /* QGCMCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QGCMCollectionViewCell.xib; sourceTree = "<group>"; };
 		9803860A1CAE340700736DE0 /* QGSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGSubViewController.h; sourceTree = "<group>"; };
 		9803860B1CAE340700736DE0 /* QGSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGSubViewController.m; sourceTree = "<group>"; };
+		9876861A1CB2B15200DE745F /* QGCMCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGCMCollectionViewCell.h; sourceTree = "<group>"; };
+		9876861B1CB2B15200DE745F /* QGCMCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGCMCollectionViewCell.m; sourceTree = "<group>"; };
+		9876861C1CB2B15200DE745F /* QGCMCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QGCMCollectionViewCell.xib; sourceTree = "<group>"; };
+		9876861D1CB2B15200DE745F /* QGCollectionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGCollectionMenu.h; sourceTree = "<group>"; };
+		9876861E1CB2B15200DE745F /* QGCollectionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGCollectionMenu.m; sourceTree = "<group>"; };
+		9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QGCollectionMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 		980385DC1CAE1B1300736DE0 = {
 			isa = PBXGroup;
 			children = (
-				980385FF1CAE1B2300736DE0 /* QGCollectionMenu */,
+				987686191CB2B15200DE745F /* QGCollectionMenu */,
 				980385E71CAE1B1300736DE0 /* QGCollectionMenuDemo */,
 				980385E61CAE1B1300736DE0 /* Products */,
 			);
@@ -95,17 +95,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		980385FF1CAE1B2300736DE0 /* QGCollectionMenu */ = {
+		987686191CB2B15200DE745F /* QGCollectionMenu */ = {
 			isa = PBXGroup;
 			children = (
-				980386001CAE1B5500736DE0 /* QGCollectionMenu.xib */,
-				980386021CAE1B7F00736DE0 /* QGCollectionMenu.h */,
-				980386031CAE1B7F00736DE0 /* QGCollectionMenu.m */,
-				980386051CAE27FA00736DE0 /* QGCMCollectionViewCell.h */,
-				980386061CAE27FA00736DE0 /* QGCMCollectionViewCell.m */,
-				980386081CAE286200736DE0 /* QGCMCollectionViewCell.xib */,
+				9876861A1CB2B15200DE745F /* QGCMCollectionViewCell.h */,
+				9876861B1CB2B15200DE745F /* QGCMCollectionViewCell.m */,
+				9876861C1CB2B15200DE745F /* QGCMCollectionViewCell.xib */,
+				9876861D1CB2B15200DE745F /* QGCollectionMenu.h */,
+				9876861E1CB2B15200DE745F /* QGCollectionMenu.m */,
+				9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */,
 			);
-			path = QGCollectionMenu;
+			name = QGCollectionMenu;
+			path = ../../QGCollectionMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,8 +168,8 @@
 			files = (
 				980385F81CAE1B1300736DE0 /* LaunchScreen.storyboard in Resources */,
 				980385F51CAE1B1300736DE0 /* Assets.xcassets in Resources */,
-				980386011CAE1B5500736DE0 /* QGCollectionMenu.xib in Resources */,
-				980386091CAE286200736DE0 /* QGCMCollectionViewCell.xib in Resources */,
+				987686211CB2B15200DE745F /* QGCMCollectionViewCell.xib in Resources */,
+				987686231CB2B15200DE745F /* QGCollectionMenu.xib in Resources */,
 				980385F31CAE1B1300736DE0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,10 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				980386071CAE27FA00736DE0 /* QGCMCollectionViewCell.m in Sources */,
+				987686201CB2B15200DE745F /* QGCMCollectionViewCell.m in Sources */,
 				980385F01CAE1B1300736DE0 /* ViewController.m in Sources */,
+				987686221CB2B15200DE745F /* QGCollectionMenu.m in Sources */,
 				980385ED1CAE1B1300736DE0 /* AppDelegate.m in Sources */,
-				980386041CAE1B7F00736DE0 /* QGCollectionMenu.m in Sources */,
 				980385EA1CAE1B1300736DE0 /* main.m in Sources */,
 				9803860C1CAE340700736DE0 /* QGSubViewController.m in Sources */,
 			);
@@ -332,6 +333,7 @@
 				980385FE1CAE1B1300736DE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
