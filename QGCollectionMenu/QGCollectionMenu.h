@@ -15,11 +15,16 @@
 - (NSArray*)subVCClassStrsForStoryBoard;
 //
 - (NSArray*)subVCClassStrsForCode;
-//
+@end
 
+@protocol QGCollectionMenuDelegate <NSObject>
+@required
+//
+- (void)updateSubVCWithIndex:(NSInteger)index;
 @end
 @interface QGCollectionMenu : UIView
 @property (nonatomic,readwrite,weak) id<QGCollectionMenuDataSource> dataSource;
+@property (nonatomic,readwrite,weak) id<QGCollectionMenuDelegate> delegate;
 @property (nonatomic,readwrite,strong) NSDictionary *titleNormalAtrributes;
 @property (nonatomic,readwrite,strong) NSDictionary *titleSelectAtrributes;
 @property (nonatomic,readwrite,assign) CGFloat titleMargin;

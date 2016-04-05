@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "QGCollectionMenu.h"
-@interface ViewController ()<QGCollectionMenuDataSource>
+
+@interface ViewController ()<QGCollectionMenuDataSource,QGCollectionMenuDelegate>
 
 @end
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.menu.delegate = self;
+    self.menu.dataSource = self;
     [self.menu reload];
 }
 
@@ -32,12 +35,23 @@
 
 - (NSArray*)subVCClassStrsForStoryBoard
 {
-    return @[@"QGSubViewController",@"QGSubViewController",@"QGSubViewController",@"QGSubViewController",@"QGSubViewController"];
+    return @[];
 }
 
 - (NSArray*)subVCClassStrsForCode
 {
-    return @[];
+    return @[@"QGSubCodeAViewController",@"QGSubCodeAViewController",@"QGSubCodeBViewController",@"QGSubCodeAViewController",@"QGSubCodeAViewController"];
 }
 
+- (void)updateSubVCWithIndex:(NSInteger)index
+{
+    NSArray * subs = [self childViewControllers];
+    for (UIViewController *vc in subs) {
+        if(vc.view.tag == index)
+        {
+            NSLog(@" 当前的vc的tag是：%ld,当前页面需要刷新数据",vc.view.tag);
+            vc.view.backgroundColor = [UIColor colorWithRed:(CGFloat)(index+1.0)/[self.menumTitles count] green:(CGFloat)(index+1.0)/[self.menumTitles count] blue:(CGFloat)(index+1.0)/[self.menumTitles count] alpha:1];
+        }
+    }
+}
 @end

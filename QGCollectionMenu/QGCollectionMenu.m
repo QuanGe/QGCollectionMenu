@@ -123,18 +123,20 @@
     {
         [self.menuCollection reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UICollectionViewCell *cell = [self collectionView:self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [UIView animateWithDuration:0.25 animations:^{
                 self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
                 
             }];
+            
+            //[self.delegate updateSubVCWithIndex:0];
         });
         
         for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForStoryBoard]) {
             [self.subVCCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:subVCClassStr];
         }
         
-        for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForStoryBoard]) {
+        for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForCode]) {
             [self.subVCCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:subVCClassStr];
         }
     }
@@ -171,6 +173,8 @@
             [cell.contentView addSubview:childViewController.view];
             [(UIViewController*)self.dataSource addChildViewController:childViewController];
         }
+        ((UIView*)[cell.contentView subviews][0]).tag = indexPath.row;
+        
         return cell;
     }
     
@@ -202,15 +206,12 @@
 {
     if(collectionView == self.menuCollection)
     {
-        [self menuChangUIByTapWithIndexPath:indexPath subVCCollectionScroll:YES];
+        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
 }
 
 - (void)menuChangUIByTapWithIndexPath:(NSIndexPath *)indexPath subVCCollectionScroll:(BOOL)scrool
 {
-    if(scrool)
-        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    
     if(self.tag == indexPath.row)
         return;
     NSInteger last = self.tag;
@@ -218,7 +219,7 @@
     [self.menuCollection reloadItemsAtIndexPaths:@[indexPath,[NSIndexPath indexPathForRow:last inSection:indexPath.section]]];
     [self.menuCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
-    UICollectionViewCell *cell = [self collectionView:self.menuCollection cellForItemAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:indexPath];
     if(scrool)
     [UIView animateWithDuration:0.25 animations:^{
         self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
@@ -226,6 +227,8 @@
     }];
     else
         self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+    
+    [self.delegate updateSubVCWithIndex:indexPath.row];
 }
 
 
@@ -247,7 +250,7 @@
     
         //
         
-        UICollectionViewCell *curSubCell = [self collectionView:self.subVCCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.tag inSection:0]];
+        UICollectionViewCell *curSubCell = [self.subVCCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.tag inSection:0]];
         NSInteger nextMenuIndex = scrollView.contentOffset.x>curSubCell.frame.origin.x?self.tag+1:self.tag-1;
         if(fabs(scrollView.contentOffset.x-curSubCell.frame.origin.x)<5)
             nextMenuIndex = self.tag;
@@ -256,8 +259,8 @@
         if(nextMenuIndex>=0 && nextMenuIndex<[[self.dataSource menumTitles] count])
         {
             //some menu change ui when u pan the sub vc
-            UICollectionViewCell *curCell = [self collectionView:self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.tag inSection:0]];
-            UICollectionViewCell *nextCell = [self collectionView:self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:nextMenuIndex inSection:0]];
+            UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.tag inSection:0]];
+            UICollectionViewCell *nextCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:nextMenuIndex inSection:0]];
             
             float pointxMove =  ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
             
