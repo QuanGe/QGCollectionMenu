@@ -38,7 +38,7 @@
     }
     else {
         // loading storyboard
-        QGCollectionMenu* view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class])
+        QGCollectionMenu* view = [[[NSBundle bundleForClass:self.class] loadNibNamed:NSStringFromClass([self class])
                                               owner:nil
                                             options:nil] objectAtIndex:0];
         
@@ -87,7 +87,7 @@
     self.menuCollection.backgroundColor = self.menuBackGroundColor;
     self.menuCollection.delegate = self;
     self.menuCollection.dataSource = self;
-    [self.menuCollection registerNib:[UINib nibWithNibName:@"QGCMCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMenuCell];
+    [self.menuCollection registerNib:[UINib nibWithNibName:@"QGCMCollectionViewCell" bundle:[NSBundle bundleForClass:self.class]] forCellWithReuseIdentifier:kMenuCell];
     
     //
     self.subVCCollection.backgroundColor = [UIColor whiteColor];
