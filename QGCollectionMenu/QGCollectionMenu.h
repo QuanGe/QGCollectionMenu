@@ -30,6 +30,8 @@
 @property (nonatomic,readwrite,assign) CGFloat titleMargin;
 @property (nonatomic,readwrite,assign) CGFloat lineHeight;
 @property (nonatomic,readwrite,strong) UIColor *lineColor;
+@property (nonatomic,readwrite,strong) UIColor *menuBackGroundColor;
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeightConstraint;
 - (void)reload;

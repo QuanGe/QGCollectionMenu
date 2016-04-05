@@ -83,7 +83,8 @@
 - (void)initConfig
 {
     //
-    self.menuCollection.backgroundColor = [UIColor whiteColor];
+    self.menuBackGroundColor = [UIColor whiteColor];
+    self.menuCollection.backgroundColor = self.menuBackGroundColor;
     self.menuCollection.delegate = self;
     self.menuCollection.dataSource = self;
     [self.menuCollection registerNib:[UINib nibWithNibName:@"QGCMCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMenuCell];
@@ -121,6 +122,7 @@
     }
     else
     {
+        self.menuCollection.backgroundColor = self.menuBackGroundColor;
         [self.menuCollection reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -155,6 +157,8 @@
         QGCMCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMenuCell forIndexPath:indexPath];
         cell.titleLabel.attributedText =  [[NSAttributedString alloc] initWithString: [[self.dataSource menumTitles] objectAtIndex:indexPath.row] attributes:indexPath.row == self.tag? self.titleSelectAtrributes: self.titleNormalAtrributes];
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
+        cell.backgroundColor =  self.menuBackGroundColor;
+        cell.titleLabel.backgroundColor = self.menuBackGroundColor;
         return cell;
         
     }
