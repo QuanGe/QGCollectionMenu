@@ -11,7 +11,8 @@ Pod::Spec.new do |s|
   s.description = 'some menus in a horizontally collection ' 
 
   s.frameworks   = 'QuartzCore'
-  s.source_files = 'QGCollectionMenu/*.{h,m,xib}'
+  s.source_files = 'QGCollectionMenu/*.{h,m}'
+  s.resources = ['QGCollectionMenu/*.{xib}']
   s.preserve_paths  = 'Demo'
   s.requires_arc = true
 end
