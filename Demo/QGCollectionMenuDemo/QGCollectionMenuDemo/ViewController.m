@@ -46,13 +46,16 @@
 
 - (void)updateSubVCWithIndex:(NSInteger)index
 {
-    NSArray * subs = [self childViewControllers];
-    for (UIViewController *vc in subs) {
-        if(vc.view.tag == index)
-        {
-            NSLog(@" 当前的vc的tag是：%ld,当前页面需要刷新数据",vc.view.tag);
-            vc.view.backgroundColor = [UIColor colorWithRed:(CGFloat)(index+1.0)/[self.menumTitles count] green:(CGFloat)(index+1.0)/[self.menumTitles count] blue:(CGFloat)(index+1.0)/[self.menumTitles count] alpha:1];
+    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSArray * subs = [self childViewControllers];
+        for (UIViewController *vc in subs) {
+            if(vc.view.tag == index)
+            {
+                NSLog(@" 当前的vc的tag是：%@,当前页面需要刷新数据",self.menumTitles[vc.view.tag]);
+                vc.view.backgroundColor = [UIColor colorWithRed:(CGFloat)(index+1.0)/[self.menumTitles count] green:(CGFloat)(index+1.0)/[self.menumTitles count] blue:(CGFloat)(index+1.0)/[self.menumTitles count] alpha:1];
+            }
         }
-    }
+    //});
+    
 }
 @end

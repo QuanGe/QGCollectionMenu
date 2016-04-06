@@ -178,7 +178,7 @@
             [(UIViewController*)self.dataSource addChildViewController:childViewController];
         }
         ((UIView*)[cell.contentView subviews][0]).tag = indexPath.row;
-        
+        [self.delegate updateSubVCWithIndex:indexPath.row];
         return cell;
     }
     
@@ -210,7 +210,9 @@
 {
     if(collectionView == self.menuCollection)
     {
+        [self menuChangUIByTapWithIndexPath:indexPath subVCCollectionScroll:YES];
         [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        collectionView.tag = 1;
     }
 }
 
@@ -232,7 +234,7 @@
     else
         self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
     
-    [self.delegate updateSubVCWithIndex:indexPath.row];
+    
 }
 
 
@@ -251,43 +253,26 @@
 {
     if(scrollView == self.subVCCollection)
     {
+        int curPageIndex =  (scrollView.contentOffset.x - (int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
+        CGFloat curMove = ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
     
-        //
+        UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
         
-        UICollectionViewCell *curSubCell = [self.subVCCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.tag inSection:0]];
-        NSInteger nextMenuIndex = scrollView.contentOffset.x>curSubCell.frame.origin.x?self.tag+1:self.tag-1;
-        if(fabs(scrollView.contentOffset.x-curSubCell.frame.origin.x)<5)
-            nextMenuIndex = self.tag;
+        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-2, curCell.frame.size.width, self.lineHeight);
         
-        
-        if(nextMenuIndex>=0 && nextMenuIndex<[[self.dataSource menumTitles] count])
+        if(self.menuCollection.tag ==0 &&fabs(curMove)<0.02)
         {
-            //some menu change ui when u pan the sub vc
-            UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.tag inSection:0]];
-            UICollectionViewCell *nextCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:nextMenuIndex inSection:0]];
-            
-            float pointxMove =  ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
-            
-            
-            if((nextMenuIndex-self.tag)>=0)
-            {
-                self.line.frame = CGRectMake(curCell.frame.origin.x+pointxMove*nextCell.frame.size.width*(nextMenuIndex-self.tag), curCell.frame.size.height-2, nextCell.frame.size.width, self.lineHeight);
-            }
-            else
-            {
-                self.line.frame = CGRectMake(nextCell.frame.origin.x+pointxMove*nextCell.frame.size.width, curCell.frame.size.height-2, nextCell.frame.size.width, self.lineHeight);
-            }
-            
-            if(fabs(fabs(scrollView.contentOffset.x-curSubCell.frame.origin.x)-scrollView.frame.size.width)<5)
-            {
-                [self.menuCollection selectItemAtIndexPath:[NSIndexPath indexPathForRow:nextMenuIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-                [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:nextMenuIndex inSection:0] subVCCollectionScroll:NO];
-                
-            }
-            
+            [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0] subVCCollectionScroll:NO];
         }
-        
     }
     
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    if(scrollView == self.subVCCollection && self.menuCollection.tag == 1)
+    {
+        self.menuCollection.tag = 0;
+    }
 }
 @end

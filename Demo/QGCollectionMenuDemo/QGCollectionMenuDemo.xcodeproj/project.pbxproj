@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A9D4AD1C409840E7F05A68F /* libPods-QGCollectionMenuDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A66D1C0D38D16ACB937723B /* libPods-QGCollectionMenuDemo.a */; };
 		980385EA1CAE1B1300736DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 980385E91CAE1B1300736DE0 /* main.m */; };
 		980385ED1CAE1B1300736DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 980385EC1CAE1B1300736DE0 /* AppDelegate.m */; };
 		980385F01CAE1B1300736DE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 980385EF1CAE1B1300736DE0 /* ViewController.m */; };
@@ -20,13 +21,12 @@
 		987686211CB2B15200DE745F /* QGCMCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9876861C1CB2B15200DE745F /* QGCMCollectionViewCell.xib */; };
 		987686221CB2B15200DE745F /* QGCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9876861E1CB2B15200DE745F /* QGCollectionMenu.m */; };
 		987686231CB2B15200DE745F /* QGCollectionMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */; };
-		CEF11CC8CA82136CDD98CE59 /* Pods_QGCollectionMenuDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A51201002033899A641EA38 /* Pods_QGCollectionMenuDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F0DE3B9141A7BC8AE1A8CAA /* Pods-QGCollectionMenuDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QGCollectionMenuDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		7A0F4C5740DA9E7A3EF013CC /* Pods-QGCollectionMenuDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QGCollectionMenuDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo.release.xcconfig"; sourceTree = "<group>"; };
-		7A51201002033899A641EA38 /* Pods_QGCollectionMenuDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QGCollectionMenuDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		488E9F5EB5A392473FC29C2D /* Pods-QGCollectionMenuDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QGCollectionMenuDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo.release.xcconfig"; sourceTree = "<group>"; };
+		6A66D1C0D38D16ACB937723B /* libPods-QGCollectionMenuDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QGCollectionMenuDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		95B344F121A50F16D7A24F75 /* Pods-QGCollectionMenuDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QGCollectionMenuDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		980385E51CAE1B1300736DE0 /* QGCollectionMenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QGCollectionMenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		980385E91CAE1B1300736DE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		980385EB1CAE1B1300736DE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,18 +56,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF11CC8CA82136CDD98CE59 /* Pods_QGCollectionMenuDemo.framework in Frameworks */,
+				7A9D4AD1C409840E7F05A68F /* libPods-QGCollectionMenuDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		219823791BD811E26429DDB3 /* Pods */ = {
+		4BF9492A9E58DB85A761EA75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F0DE3B9141A7BC8AE1A8CAA /* Pods-QGCollectionMenuDemo.debug.xcconfig */,
-				7A0F4C5740DA9E7A3EF013CC /* Pods-QGCollectionMenuDemo.release.xcconfig */,
+				6A66D1C0D38D16ACB937723B /* libPods-QGCollectionMenuDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5454CE8883C97D4676932467 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95B344F121A50F16D7A24F75 /* Pods-QGCollectionMenuDemo.debug.xcconfig */,
+				488E9F5EB5A392473FC29C2D /* Pods-QGCollectionMenuDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -78,8 +86,8 @@
 				987686191CB2B15200DE745F /* QGCollectionMenu */,
 				980385E71CAE1B1300736DE0 /* QGCollectionMenuDemo */,
 				980385E61CAE1B1300736DE0 /* Products */,
-				219823791BD811E26429DDB3 /* Pods */,
-				F0E492AD5479375E2B28CCDA /* Frameworks */,
+				5454CE8883C97D4676932467 /* Pods */,
+				4BF9492A9E58DB85A761EA75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,14 +143,6 @@
 			path = ../../QGCollectionMenu;
 			sourceTree = "<group>";
 		};
-		F0E492AD5479375E2B28CCDA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7A51201002033899A641EA38 /* Pods_QGCollectionMenuDemo.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,12 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 980385FC1CAE1B1300736DE0 /* Build configuration list for PBXNativeTarget "QGCollectionMenuDemo" */;
 			buildPhases = (
-				912C21255698CC81CA382A22 /* Check Pods Manifest.lock */,
+				D1FFA9E8BF73469FDAB03814 /* Check Pods Manifest.lock */,
 				980385E11CAE1B1300736DE0 /* Sources */,
 				980385E21CAE1B1300736DE0 /* Frameworks */,
 				980385E31CAE1B1300736DE0 /* Resources */,
-				C660E8E681BACCA02237A91C /* Embed Pods Frameworks */,
-				83B69DF8E1F8D4C373A7AFA8 /* Copy Pods Resources */,
+				B62211158634109189284470 /* Embed Pods Frameworks */,
+				95C3AED6ABC18FD18628326E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,7 +214,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		83B69DF8E1F8D4C373A7AFA8 /* Copy Pods Resources */ = {
+		95C3AED6ABC18FD18628326E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,22 +229,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		912C21255698CC81CA382A22 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C660E8E681BACCA02237A91C /* Embed Pods Frameworks */ = {
+		B62211158634109189284470 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,6 +242,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1FFA9E8BF73469FDAB03814 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -381,10 +381,11 @@
 		};
 		980385FD1CAE1B1300736DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F0DE3B9141A7BC8AE1A8CAA /* Pods-QGCollectionMenuDemo.debug.xcconfig */;
+			baseConfigurationReference = 95B344F121A50F16D7A24F75 /* Pods-QGCollectionMenuDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QGCollectionMenuDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quange.QGCollectionMenuDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -393,10 +394,11 @@
 		};
 		980385FE1CAE1B1300736DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A0F4C5740DA9E7A3EF013CC /* Pods-QGCollectionMenuDemo.release.xcconfig */;
+			baseConfigurationReference = 488E9F5EB5A392473FC29C2D /* Pods-QGCollectionMenuDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QGCollectionMenuDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.quange.QGCollectionMenuDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

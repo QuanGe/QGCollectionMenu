@@ -1,6 +1,0 @@
-framework module Pods_QGCollectionMenuDemo {
-  umbrella header "Pods-QGCollectionMenuDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}
