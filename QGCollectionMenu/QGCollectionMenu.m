@@ -251,7 +251,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(scrollView == self.subVCCollection)
+    if(scrollView == self.subVCCollection &&self.menuCollection.tag ==0)
     {
         int curPageIndex =  (scrollView.contentOffset.x - (int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
         CGFloat curMove = ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
@@ -260,7 +260,7 @@
         
         self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-2, curCell.frame.size.width, self.lineHeight);
         
-        if(self.menuCollection.tag ==0 &&fabs(curMove)<0.02)
+        if(fabs(curMove)<0.02)
         {
             [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0] subVCCollectionScroll:NO];
         }
