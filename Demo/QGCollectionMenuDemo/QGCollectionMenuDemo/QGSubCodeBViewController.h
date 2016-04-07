@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface QGSubCodeBViewController : UIViewController
+#import "QGSubCodeAViewController.h"
+@interface QGSubCodeBViewController : QGSubCodeAViewController
 
 @end
