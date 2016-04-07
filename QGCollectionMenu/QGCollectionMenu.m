@@ -275,4 +275,20 @@
         self.menuCollection.tag = 0;
     }
 }
+
+- (void)clearCollectionDelegateAndDataSource
+{
+    self.menuCollection.dataSource = nil;
+    self.subVCCollection.delegate = nil;
+    self.menuCollection.delegate = nil;
+    self.subVCCollection.dataSource = nil;
+}
+
+- (void)resetCollectionDelegateAndDataSource
+{
+    self.menuCollection.dataSource = self;
+    self.subVCCollection.dataSource = self;
+    self.menuCollection.delegate = self;
+    self.subVCCollection.delegate = self;
+}
 @end

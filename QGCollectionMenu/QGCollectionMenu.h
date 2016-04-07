@@ -34,5 +34,10 @@
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeightConstraint;
+//
 - (void)reload;
+//
+- (void)clearCollectionDelegateAndDataSource;
+//
+- (void)resetCollectionDelegateAndDataSource;
 @end
