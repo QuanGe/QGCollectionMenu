@@ -78,7 +78,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="3IR-5W-Zdf">
             <objects>
-                <tabBarController id="9TS-Gj-r2X" sceneMemberID="viewController">
+                <tabBarController id="9TS-Gj-r2X" customClass="QGTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="x9m-6x-JVB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -149,17 +149,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="子界面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0G-2n-OE2">
-                                <rect key="frame" x="275" y="290" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxd-Aq-KJ2">
+                                <rect key="frame" x="269" y="269" width="81" height="30"/>
+                                <state key="normal" title="子界面返回"/>
+                                <connections>
+                                    <action selector="back:" destination="Orz-5S-uvd" eventType="touchUpInside" id="Ix2-kD-CWt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.41568627450000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Q0G-2n-OE2" firstAttribute="centerY" secondItem="Q1J-Pt-JED" secondAttribute="centerY" id="Yhb-rZ-b8X"/>
-                            <constraint firstItem="Q0G-2n-OE2" firstAttribute="centerX" secondItem="Q1J-Pt-JED" secondAttribute="centerX" id="jld-ho-9P5"/>
+                            <constraint firstItem="Jxd-Aq-KJ2" firstAttribute="centerX" secondItem="Q1J-Pt-JED" secondAttribute="centerX" id="kPQ-Cy-mIF"/>
+                            <constraint firstItem="Jxd-Aq-KJ2" firstAttribute="centerY" secondItem="Q1J-Pt-JED" secondAttribute="centerY" id="wzu-EH-BN7"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -22,6 +22,21 @@
     self.menu.dataSource = self;
     self.menu.menuBackGroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
     [self.menu reload];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view layoutSubviews];
+    
+}
+
+- (void)viewDidLayoutSubviews
+{
+    if ([self respondsToSelector:@selector(topLayoutGuide)]) {
+        [self.menu contentInsetUpdate];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

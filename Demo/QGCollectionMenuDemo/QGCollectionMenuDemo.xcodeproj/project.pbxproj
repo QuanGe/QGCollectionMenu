@@ -21,6 +21,8 @@
 		987686211CB2B15200DE745F /* QGCMCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9876861C1CB2B15200DE745F /* QGCMCollectionViewCell.xib */; };
 		987686221CB2B15200DE745F /* QGCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9876861E1CB2B15200DE745F /* QGCollectionMenu.m */; };
 		987686231CB2B15200DE745F /* QGCollectionMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */; };
+		988ADBB11CB75B24003BD578 /* QGTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988ADBB01CB75B24003BD578 /* QGTabBarController.m */; };
+		988ADBB41CB75C20003BD578 /* QGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988ADBB31CB75C20003BD578 /* QGNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,10 @@
 		9876861D1CB2B15200DE745F /* QGCollectionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGCollectionMenu.h; sourceTree = "<group>"; };
 		9876861E1CB2B15200DE745F /* QGCollectionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGCollectionMenu.m; sourceTree = "<group>"; };
 		9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QGCollectionMenu.xib; sourceTree = "<group>"; };
+		988ADBAF1CB75B24003BD578 /* QGTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGTabBarController.h; sourceTree = "<group>"; };
+		988ADBB01CB75B24003BD578 /* QGTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGTabBarController.m; sourceTree = "<group>"; };
+		988ADBB21CB75C20003BD578 /* QGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGNavigationController.h; sourceTree = "<group>"; };
+		988ADBB31CB75C20003BD578 /* QGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QGNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 				9864B3371CB36CC600011290 /* QGSubCodeAViewController.m */,
 				9864B3391CB36CDA00011290 /* QGSubCodeBViewController.h */,
 				9864B33A1CB36CDA00011290 /* QGSubCodeBViewController.m */,
+				988ADBAF1CB75B24003BD578 /* QGTabBarController.h */,
+				988ADBB01CB75B24003BD578 /* QGTabBarController.m */,
+				988ADBB21CB75C20003BD578 /* QGNavigationController.h */,
+				988ADBB31CB75C20003BD578 /* QGNavigationController.m */,
 			);
 			path = QGCollectionMenuDemo;
 			sourceTree = "<group>";
@@ -269,8 +279,10 @@
 				987686201CB2B15200DE745F /* QGCMCollectionViewCell.m in Sources */,
 				980385F01CAE1B1300736DE0 /* ViewController.m in Sources */,
 				9864B3381CB36CC600011290 /* QGSubCodeAViewController.m in Sources */,
+				988ADBB41CB75C20003BD578 /* QGNavigationController.m in Sources */,
 				9864B33B1CB36CDA00011290 /* QGSubCodeBViewController.m in Sources */,
 				987686221CB2B15200DE745F /* QGCollectionMenu.m in Sources */,
+				988ADBB11CB75B24003BD578 /* QGTabBarController.m in Sources */,
 				980385ED1CAE1B1300736DE0 /* AppDelegate.m in Sources */,
 				980385EA1CAE1B1300736DE0 /* main.m in Sources */,
 				9803860C1CAE340700736DE0 /* QGSubViewController.m in Sources */,

@@ -1,32 +1,28 @@
 //
-//  QGSubViewController.m
+//  QGNavigationController.m
 //  QGCollectionMenuDemo
 //
-//  Created by 张如泉 on 16/4/1.
+//  Created by 张如泉 on 16/4/8.
 //  Copyright © 2016年 quange. All rights reserved.
 //
 
-#import "QGSubViewController.h"
+#import "QGNavigationController.h"
 
-@interface QGSubViewController ()
+@interface QGNavigationController ()
 
 @end
 
-@implementation QGSubViewController
+@implementation QGNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"hehe");
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)back:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

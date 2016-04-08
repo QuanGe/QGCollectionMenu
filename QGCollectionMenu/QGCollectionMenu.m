@@ -122,7 +122,14 @@
     }
     else
     {
-        ((UIViewController*)self.dataSource).automaticallyAdjustsScrollViewInsets = false;
+        if([self.dataSource respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)])
+            ((UIViewController*)self.dataSource).automaticallyAdjustsScrollViewInsets = false;
+        if([self.dataSource respondsToSelector:@selector(edgesForExtendedLayout)])
+            ((UIViewController*)self.dataSource).edgesForExtendedLayout = UIRectEdgeNone;
+        if([((UIViewController*)self.dataSource).tabBarController respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)])
+            ((UIViewController*)self.dataSource).tabBarController.automaticallyAdjustsScrollViewInsets = false;
+        if([((UIViewController*)self.dataSource).tabBarController respondsToSelector:@selector(edgesForExtendedLayout)])
+            ((UIViewController*)self.dataSource).tabBarController.edgesForExtendedLayout = UIRectEdgeNone;
         self.menuCollection.backgroundColor = self.menuBackGroundColor;
         [self.menuCollection reloadData];
         [self.subVCCollection reloadData];
@@ -148,7 +155,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [[self.dataSource menumTitles] count];
+    
+    return self.dataSource? [[self.dataSource menumTitles] count]:0;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -292,5 +300,12 @@
     self.subVCCollection.dataSource = self;
     self.menuCollection.delegate = self;
     self.subVCCollection.delegate = self;
+}
+
+- (void)contentInsetUpdate
+{
+    UIEdgeInsets mei = self.subVCCollection.contentInset;
+    NSLog(@"当前的顶是 %.3f",((UIViewController*)self.dataSource).topLayoutGuide.length);
+    self.subVCCollection.contentInset = UIEdgeInsetsMake(64, mei.left, mei.bottom, mei.right);
 }
 @end

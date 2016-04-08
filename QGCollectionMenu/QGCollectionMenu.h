@@ -40,4 +40,6 @@
 - (void)clearCollectionDelegateAndDataSource;
 //
 - (void)resetCollectionDelegateAndDataSource;
+//
+- (void)contentInsetUpdate;
 @end
