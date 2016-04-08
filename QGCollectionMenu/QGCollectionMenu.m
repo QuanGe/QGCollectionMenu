@@ -286,26 +286,4 @@
     }
 }
 
-- (void)clearCollectionDelegateAndDataSource
-{
-    self.menuCollection.dataSource = nil;
-    self.subVCCollection.delegate = nil;
-    self.menuCollection.delegate = nil;
-    self.subVCCollection.dataSource = nil;
-}
-
-- (void)resetCollectionDelegateAndDataSource
-{
-    self.menuCollection.dataSource = self;
-    self.subVCCollection.dataSource = self;
-    self.menuCollection.delegate = self;
-    self.subVCCollection.delegate = self;
-}
-
-- (void)contentInsetUpdate
-{
-    UIEdgeInsets mei = self.subVCCollection.contentInset;
-    NSLog(@"当前的顶是 %.3f",((UIViewController*)self.dataSource).topLayoutGuide.length);
-    self.subVCCollection.contentInset = UIEdgeInsetsMake(64, mei.left, mei.bottom, mei.right);
-}
 @end
