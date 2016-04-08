@@ -286,4 +286,14 @@
     }
 }
 
+- (void)subVCCollectionContentInsetUpdate
+{
+    UIEdgeInsets mei = self.subVCCollection.contentInset;
+    NSLog(@"当前的顶是 %.3f",((UIViewController*)self.dataSource).topLayoutGuide.length);
+    CGFloat h = mei.top;
+    if(((UIViewController*)self.dataSource).navigationController && !((UIViewController*)self.dataSource).navigationController.navigationBarHidden)
+        h = 64;
+        
+    self.subVCCollection.contentInset = UIEdgeInsetsMake(h, mei.left, mei.bottom, mei.right);
+}
 @end

@@ -35,7 +35,7 @@
 - (void)viewDidLayoutSubviews
 {
     if ([self respondsToSelector:@selector(topLayoutGuide)]) {
-        [self.menu contentInsetUpdate];
+        [self.menu subVCCollectionContentInsetUpdate];
     }
 }
 

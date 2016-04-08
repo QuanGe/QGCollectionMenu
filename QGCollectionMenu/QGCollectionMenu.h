@@ -36,4 +36,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeightConstraint;
 //
 - (void)reload;
+//
+- (void)subVCCollectionContentInsetUpdate;
 @end
