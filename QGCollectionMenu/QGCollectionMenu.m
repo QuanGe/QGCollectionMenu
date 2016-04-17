@@ -87,12 +87,14 @@
     self.menuCollection.backgroundColor = self.menuBackGroundColor;
     self.menuCollection.delegate = self;
     self.menuCollection.dataSource = self;
+    self.menuCollection.scrollsToTop = false;
     [self.menuCollection registerNib:[UINib nibWithNibName:@"QGCMCollectionViewCell" bundle:[NSBundle bundleForClass:self.class]] forCellWithReuseIdentifier:kMenuCell];
     
     //
     self.subVCCollection.backgroundColor = [UIColor whiteColor];
     self.subVCCollection.delegate = self;
     self.subVCCollection.dataSource = self;
+    self.subVCCollection.scrollsToTop = false;
     self.subVCCollection.pagingEnabled = YES;
     
     //
@@ -189,6 +191,18 @@
         }
         ((UIView*)[cell.contentView subviews][0]).tag = indexPath.row;
         [self.delegate updateSubVCWithIndex:indexPath.row];
+        
+        //
+        {
+            id view = nil;
+            while (view && [view isKindOfClass:[UIScrollView class]] == NO) {
+                view = [view superview];
+            }
+            if(view)
+            {
+                ((UIScrollView*)view).scrollsToTop = YES;
+            }
+        }
         return cell;
     }
     
@@ -295,5 +309,21 @@
         h = 64;
         
     self.subVCCollection.contentInset = UIEdgeInsetsMake(h, mei.left, mei.bottom, mei.right);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(collectionView == self.subVCCollection)
+    {
+        id view = nil;
+        while (view && [view isKindOfClass:[UIScrollView class]] == NO) {
+            view = [view superview];
+        }
+        if(view)
+        {
+            ((UIScrollView*)view).scrollsToTop = NO;
+        }
+    }
+    
 }
 @end
