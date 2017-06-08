@@ -190,8 +190,6 @@
             [(UIViewController*)self.dataSource addChildViewController:childViewController];
         }
         ((UIView*)[cell.contentView subviews][0]).tag = indexPath.row;
-        [self.delegate updateSubVCWithIndex:indexPath.row];
-        
         //
         {
             id view = nil;
@@ -236,6 +234,7 @@
     {
         [self menuChangUIByTapWithIndexPath:indexPath subVCCollectionScroll:YES];
         [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [self.delegate updateSubVCWithIndex:indexPath.row];
         collectionView.tag = 1;
     }
 }
