@@ -120,7 +120,8 @@
     self.lineHeight = 2;
     self.topBoxViewLocked = YES;
     self.topBoxViewOrtherLockedHeight = 0;
-    self.titleWidthEquals = YES;
+    self.titleWidthEquals = NO;
+    self.titleWidthEqualsAuto = YES;
 }
 
 - (void)reload
@@ -234,8 +235,25 @@
                                                                                                 options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                                                                              attributes:self.titleNormalAtrributes
                                                                                                 context:nil];
+    
     if(self.menuCollection == collectionView)
     {
+        if(self.titleWidthEqualsAuto)
+        {
+            CGFloat allWidth = 0;
+            for (NSString *title in [self.dataSource menumTitles]) {
+                CGRect textRect = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30)
+                                                      options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                   attributes:self.titleNormalAtrributes
+                                                      context:nil];
+                allWidth += (textRect.size.width +self.titleMargin);
+            }
+            if (allWidth < collectionView.bounds.size.width)
+            {
+                self.titleWidthEquals = YES;
+            }
+        }
+
         if (self.titleWidthEquals) {
             return CGSizeMake(collectionView.bounds.size.width/[[self.dataSource menumTitles] count], self.titleHeightConstraint.constant);
         }

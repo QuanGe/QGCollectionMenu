@@ -31,6 +31,7 @@
 @property (nonatomic,readwrite,strong) NSDictionary *titleSelectAtrributes;
 @property (nonatomic,readwrite,assign) CGFloat titleMargin;
 @property (nonatomic,readwrite,assign) BOOL titleWidthEquals;
+@property (nonatomic,readwrite,assign) BOOL titleWidthEqualsAuto;
 @property (nonatomic,readwrite,assign) CGFloat lineHeight;
 @property (nonatomic,readwrite,strong) UIColor *lineColor;
 @property (nonatomic,readwrite,strong) UIColor *menuBackGroundColor;
