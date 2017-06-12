@@ -11,27 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QGCollectionMenu">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="QGCollectionMenu">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oHV-Wb-pjn">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Jfr-Co-88t"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LIk-Yd-7C3">
-                        <size key="itemSize" width="39" height="39"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ank-aI-JYA">
-                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                    <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LdU-WE-zAM">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="627"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="567"/>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tsF-Dz-wiB">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -48,23 +36,49 @@
                         <constraint firstAttribute="bottom" secondItem="LdU-WE-zAM" secondAttribute="bottom" id="iZf-Od-whk"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1k-xy-CMX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oHV-Wb-pjn">
+                            <rect key="frame" x="0.0" y="60" width="375" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Jfr-Co-88t"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LIk-Yd-7C3">
+                                <size key="itemSize" width="39" height="39"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="oHV-Wb-pjn" firstAttribute="leading" secondItem="x1k-xy-CMX" secondAttribute="leading" id="7yF-Qv-FVK"/>
+                        <constraint firstAttribute="trailing" secondItem="oHV-Wb-pjn" secondAttribute="trailing" id="JQh-XU-M0A"/>
+                        <constraint firstAttribute="bottom" secondItem="oHV-Wb-pjn" secondAttribute="bottom" id="WXa-6u-q6B"/>
+                        <constraint firstAttribute="height" constant="100" id="f6L-KC-xQL"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ank-aI-JYA" firstAttribute="top" secondItem="oHV-Wb-pjn" secondAttribute="bottom" id="0A8-8C-GR3"/>
                 <constraint firstAttribute="trailing" secondItem="ank-aI-JYA" secondAttribute="trailing" id="0UO-nS-VPc"/>
-                <constraint firstItem="oHV-Wb-pjn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2WY-IC-AF1"/>
-                <constraint firstItem="oHV-Wb-pjn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X4z-qu-dVN"/>
-                <constraint firstAttribute="trailing" secondItem="oHV-Wb-pjn" secondAttribute="trailing" id="YjO-cc-OcQ"/>
-                <constraint firstItem="ank-aI-JYA" firstAttribute="top" secondItem="oHV-Wb-pjn" secondAttribute="bottom" id="gpL-fB-JYH"/>
+                <constraint firstItem="x1k-xy-CMX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BvM-t0-tIN"/>
+                <constraint firstItem="ank-aI-JYA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="EJ1-0p-Thh"/>
+                <constraint firstAttribute="trailing" secondItem="x1k-xy-CMX" secondAttribute="trailing" id="jYG-EE-xQX"/>
                 <constraint firstItem="ank-aI-JYA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qaB-98-6bc"/>
                 <constraint firstAttribute="bottom" secondItem="ank-aI-JYA" secondAttribute="bottom" id="sW8-py-1mq"/>
+                <constraint firstItem="x1k-xy-CMX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vv5-u9-D4L"/>
             </constraints>
             <connections>
                 <outlet property="menuCollection" destination="oHV-Wb-pjn" id="Zsy-YS-T5l"/>
                 <outlet property="subVCCollection" destination="LdU-WE-zAM" id="QHy-BH-xi9"/>
                 <outlet property="subVCContainer" destination="ank-aI-JYA" id="jbP-Gi-rDF"/>
+                <outlet property="subVCContainerTopConstraint" destination="EJ1-0p-Thh" id="T5a-Bu-ftD"/>
                 <outlet property="titleHeightConstraint" destination="Jfr-Co-88t" id="M76-X3-AXG"/>
+                <outlet property="topBoxView" destination="x1k-xy-CMX" id="oom-cZ-4Iw"/>
+                <outlet property="topBoxViewHeightConstraint" destination="f6L-KC-xQL" id="yhf-uT-cRG"/>
             </connections>
         </view>
     </objects>

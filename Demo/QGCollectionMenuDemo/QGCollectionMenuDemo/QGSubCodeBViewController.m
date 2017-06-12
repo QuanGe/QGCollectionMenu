@@ -19,5 +19,7 @@
     cell.backgroundColor = [UIColor blueColor];
     return cell;
 }
-
+- (void)updateParameters:(id)parameters{
+    NSLog(@"parameters:%@",parameters);
+}
 @end

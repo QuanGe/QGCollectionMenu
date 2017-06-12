@@ -8,6 +8,7 @@
 
 #import "QGCollectionMenu.h"
 #import "QGCMCollectionViewCell.h"
+#import "UIViewController+QGCollectionMenu.h"
 #import <objc/runtime.h>
 #define kMenuCell @"kQGMenuCell"
 #define kVCCell @"kQGVCCell"
@@ -75,8 +76,15 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     if(!self.menuCollection.delegate)
         [self initConfig];
+    
+}
+
+- (void)setTopBoxViewLocked:(BOOL)topBoxViewLocked {
+    _topBoxViewLocked = topBoxViewLocked;
+    self.subVCContainerTopConstraint.constant = _topBoxViewLocked?self.topBoxViewHeightConstraint.constant:0;
     
 }
 
@@ -110,6 +118,9 @@
     self.titleHeightConstraint.constant = 40;
     self.titleMargin = 30;
     self.lineHeight = 2;
+    self.topBoxViewLocked = YES;
+    self.topBoxViewOrtherLockedHeight = 0;
+    self.titleWidthEquals = YES;
 }
 
 - (void)reload
@@ -183,7 +194,18 @@
             //UIViewController *childViewController = [[objc_getClass(([self.dataSource subVCClassStr]).UTF8String) alloc] init];
             UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UIViewController* childViewController=[self.dataSource subVCClassStrsForCode].count==0?[mainStoryboard instantiateViewControllerWithIdentifier:subVCClassStr]:[[objc_getClass(subVCClassStr.UTF8String) alloc] init];
+            if([childViewController respondsToSelector:@selector(updateParameters:)])
+            {
+                [childViewController updateParameters:[[self.dataSource subVCClassParameters] objectAtIndex:indexPath.row]];
+            }
             
+            for (UIView* view in childViewController.view.subviews) {
+                if([view isKindOfClass:[UIScrollView class]])
+                {
+                    [view addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+                    break;
+                }
+            }
             
             childViewController.view.frame = collectionView.frame;
             [cell.contentView addSubview:childViewController.view];
@@ -214,7 +236,13 @@
                                                                                                 context:nil];
     if(self.menuCollection == collectionView)
     {
-        return CGSizeMake(textRect.size.width+self.titleMargin, 40);
+        if (self.titleWidthEquals) {
+            return CGSizeMake(collectionView.bounds.size.width/[[self.dataSource menumTitles] count], self.titleHeightConstraint.constant);
+        }
+        else {
+            return CGSizeMake(textRect.size.width+self.titleMargin, self.titleHeightConstraint.constant);
+        }
+        
     }
     else
     {
@@ -322,6 +350,23 @@
         {
             ((UIScrollView*)view).scrollsToTop = NO;
         }
+    }
+    
+}
+
+#pragma mark - Observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if(self.topBoxViewLocked)
+        return;
+    if([keyPath isEqualToString:@"contentOffset"])
+    {
+        CGFloat changeY = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue].y;
+        CGFloat allLockedY = self.topBoxViewHeightConstraint.constant- self.topBoxViewOrtherLockedHeight-self.titleHeightConstraint.constant;
+        if(changeY<=allLockedY)
+            self.topBoxView.transform = CGAffineTransformMakeTranslation(0, -changeY);
+        else
+            self.topBoxView.transform = CGAffineTransformMakeTranslation(0, -allLockedY);
     }
     
 }

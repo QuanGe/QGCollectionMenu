@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B98E9561EE933D500FAF854 /* UIViewController+QGCollectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B98E9551EE933D500FAF854 /* UIViewController+QGCollectionMenu.m */; };
 		7A9D4AD1C409840E7F05A68F /* libPods-QGCollectionMenuDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A66D1C0D38D16ACB937723B /* libPods-QGCollectionMenuDemo.a */; };
 		980385EA1CAE1B1300736DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 980385E91CAE1B1300736DE0 /* main.m */; };
 		980385ED1CAE1B1300736DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 980385EC1CAE1B1300736DE0 /* AppDelegate.m */; };
@@ -27,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		488E9F5EB5A392473FC29C2D /* Pods-QGCollectionMenuDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QGCollectionMenuDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo.release.xcconfig"; sourceTree = "<group>"; };
+		4B98E9541EE933D500FAF854 /* UIViewController+QGCollectionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+QGCollectionMenu.h"; sourceTree = "<group>"; };
+		4B98E9551EE933D500FAF854 /* UIViewController+QGCollectionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+QGCollectionMenu.m"; sourceTree = "<group>"; };
 		6A66D1C0D38D16ACB937723B /* libPods-QGCollectionMenuDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QGCollectionMenuDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B344F121A50F16D7A24F75 /* Pods-QGCollectionMenuDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QGCollectionMenuDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QGCollectionMenuDemo/Pods-QGCollectionMenuDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		980385E51CAE1B1300736DE0 /* QGCollectionMenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QGCollectionMenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +151,8 @@
 				9876861D1CB2B15200DE745F /* QGCollectionMenu.h */,
 				9876861E1CB2B15200DE745F /* QGCollectionMenu.m */,
 				9876861F1CB2B15200DE745F /* QGCollectionMenu.xib */,
+				4B98E9541EE933D500FAF854 /* UIViewController+QGCollectionMenu.h */,
+				4B98E9551EE933D500FAF854 /* UIViewController+QGCollectionMenu.m */,
 			);
 			name = QGCollectionMenu;
 			path = ../../QGCollectionMenu;
@@ -285,6 +290,7 @@
 				988ADBB11CB75B24003BD578 /* QGTabBarController.m in Sources */,
 				980385ED1CAE1B1300736DE0 /* AppDelegate.m in Sources */,
 				980385EA1CAE1B1300736DE0 /* main.m in Sources */,
+				4B98E9561EE933D500FAF854 /* UIViewController+QGCollectionMenu.m in Sources */,
 				9803860C1CAE340700736DE0 /* QGSubViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

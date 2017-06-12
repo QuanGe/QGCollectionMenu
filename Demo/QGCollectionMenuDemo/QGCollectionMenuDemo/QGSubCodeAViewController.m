@@ -66,7 +66,9 @@
     
     
 }
-
+- (void)updateParameters:(id)parameters{
+    NSLog(@"parameters:%@",parameters);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

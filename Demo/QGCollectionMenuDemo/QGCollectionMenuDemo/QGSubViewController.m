@@ -29,6 +29,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)updateParameters:(id)parameters{
+    NSLog(@"parameters:%@",parameters);
+}
 /*
 #pragma mark - Navigation
 

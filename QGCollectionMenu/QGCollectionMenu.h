@@ -15,6 +15,8 @@
 - (NSArray*)subVCClassStrsForStoryBoard;
 //
 - (NSArray*)subVCClassStrsForCode;
+//
+- (NSArray*)subVCClassParameters;
 @end
 
 @protocol QGCollectionMenuDelegate <NSObject>
@@ -28,12 +30,18 @@
 @property (nonatomic,readwrite,strong) NSDictionary *titleNormalAtrributes;
 @property (nonatomic,readwrite,strong) NSDictionary *titleSelectAtrributes;
 @property (nonatomic,readwrite,assign) CGFloat titleMargin;
+@property (nonatomic,readwrite,assign) BOOL titleWidthEquals;
 @property (nonatomic,readwrite,assign) CGFloat lineHeight;
 @property (nonatomic,readwrite,strong) UIColor *lineColor;
 @property (nonatomic,readwrite,strong) UIColor *menuBackGroundColor;
+@property (nonatomic,readwrite,assign) BOOL topBoxViewLocked;
 
-
+@property (nonatomic,readwrite,assign) CGFloat topBoxViewOrtherLockedHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBoxViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subVCContainerTopConstraint;
+@property (weak, nonatomic) IBOutlet UIView *topBoxView;
+
 //
 - (void)reload;
 //

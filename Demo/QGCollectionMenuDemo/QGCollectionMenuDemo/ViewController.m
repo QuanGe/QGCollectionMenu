@@ -23,6 +23,7 @@
     self.menu.menuBackGroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
     [self.menu reload];
     
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,6 +58,10 @@
 - (NSArray*)subVCClassStrsForCode
 {
     return @[@"QGSubCodeAViewController",@"QGSubCodeAViewController",@"QGSubCodeBViewController",@"QGSubCodeAViewController",@"QGSubCodeAViewController"];
+}
+
+- (NSArray*)subVCClassParameters{
+    return @[@{@"a":@(0)},@{@"a":@(1)},@{@"a":@(2)},@{@"a":@(3)},@{@"a":@(4)}];
 }
 
 - (void)updateSubVCWithIndex:(NSInteger)index
