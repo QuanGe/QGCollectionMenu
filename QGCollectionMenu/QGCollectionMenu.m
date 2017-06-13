@@ -308,7 +308,7 @@
     if(collectionView == self.menuCollection)
     {
         [self menuChangUIByTapWithIndexPath:indexPath subVCCollectionScroll:YES];
-        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
         [self.delegate updateSubVCWithIndex:indexPath.row];
         collectionView.tag = 1;
     }
