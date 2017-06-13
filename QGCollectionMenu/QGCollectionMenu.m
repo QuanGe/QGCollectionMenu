@@ -160,7 +160,7 @@
                 
             }];
             
-            //[self.delegate updateSubVCWithIndex:0];
+            [self.delegate updateSubVCWithIndex:0];
         });
         
         for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForStoryBoard]) {
@@ -338,6 +338,7 @@
         if(fabs(curMove)<0.02)
         {
             [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0] subVCCollectionScroll:NO];
+            [self.delegate updateSubVCWithIndex:curPageIndex];
         }
     }
     
