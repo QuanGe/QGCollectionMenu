@@ -124,6 +124,12 @@
     self.titleWidthEqualsAuto = YES;
 }
 
+- (void)setLineColor:(UIColor *)lineColor
+{
+    _lineColor = lineColor;
+    self.line.backgroundColor =self.lineColor;
+}
+
 - (void)reload
 {
     if(!self.dataSource)
