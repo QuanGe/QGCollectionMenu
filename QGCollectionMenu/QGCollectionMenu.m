@@ -82,6 +82,29 @@
     
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if (self.superview && newSuperview == nil) {
+        //use self.superview, not self.scrollView. Why self.scrollView == nil here?
+        for (UIView *sub in self.subVCCollection.subviews) {
+            if ([sub isKindOfClass:[UICollectionViewCell class]])
+            for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
+                for (UIView* subview in view.subviews) {
+                    
+                    if([subview isKindOfClass:[UIScrollView class]])
+                    {
+                        [subview removeObserver:self forKeyPath:@"contentOffset"];
+                        break;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+}
+
+
+
 - (void)setTopBoxViewLocked:(BOOL)topBoxViewLocked {
     _topBoxViewLocked = topBoxViewLocked;
     self.subVCContainerTopConstraint.constant = _topBoxViewLocked?self.topBoxViewHeightConstraint.constant:0;
