@@ -145,6 +145,7 @@
     self.topBoxViewOrtherLockedHeight = 0;
     self.titleWidthEquals = NO;
     self.titleWidthEqualsAuto = YES;
+    self.srollSubVCAnimate = NO;
 }
 
 - (void)setLineColor:(UIColor *)lineColor
@@ -308,9 +309,11 @@
     if(collectionView == self.menuCollection)
     {
         [self menuChangUIByTapWithIndexPath:indexPath subVCCollectionScroll:YES];
-        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:self.srollSubVCAnimate];
         [self.delegate updateSubVCWithIndex:indexPath.row];
-        collectionView.tag = 1;
+        if(self.srollSubVCAnimate) {
+            collectionView.tag = 1;
+        }
     }
 }
 
@@ -351,6 +354,7 @@
 {
     if(scrollView == self.subVCCollection &&self.menuCollection.tag ==0)
     {
+        
         int curPageIndex =  (scrollView.contentOffset.x - (int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
         CGFloat curMove = ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
     
@@ -369,7 +373,7 @@
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    if(scrollView == self.subVCCollection && self.menuCollection.tag == 1)
+    if(scrollView == self.subVCCollection && self.menuCollection.tag == 1 &&self.srollSubVCAnimate)
     {
         self.menuCollection.tag = 0;
     }
