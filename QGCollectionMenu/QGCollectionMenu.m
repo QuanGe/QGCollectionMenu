@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *subVCCollection;
 
 
+
 @property (nonatomic,readwrite,strong) UIView * line;
 @end
 

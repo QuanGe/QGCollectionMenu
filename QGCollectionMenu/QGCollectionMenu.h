@@ -37,6 +37,8 @@
 @property (nonatomic,readwrite,strong) UIColor *menuBackGroundColor;
 @property (nonatomic,readwrite,assign) BOOL topBoxViewLocked;
 @property (nonatomic,readwrite,assign) BOOL srollSubVCAnimate;
+@property (weak, nonatomic) IBOutlet UIView *titleTopLineView;
+@property (weak, nonatomic) IBOutlet UIView *titleBottomLineView;
 
 @property (nonatomic,readwrite,assign) CGFloat topBoxViewOrtherLockedHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleHeightConstraint;

@@ -51,13 +51,33 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WE-jo-AF0">
+                            <rect key="frame" x="0.0" y="99" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.72549019609999998" green="0.75686274509999996" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="hP8-T1-a4z"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhJ-AM-Bxy">
+                            <rect key="frame" x="0.0" y="59" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.72549019609999998" green="0.75686274509999996" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="USz-z6-82W"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="oHV-Wb-pjn" firstAttribute="leading" secondItem="x1k-xy-CMX" secondAttribute="leading" id="7yF-Qv-FVK"/>
+                        <constraint firstItem="oHV-Wb-pjn" firstAttribute="top" secondItem="mhJ-AM-Bxy" secondAttribute="bottom" id="98C-tv-Dju"/>
+                        <constraint firstAttribute="trailing" secondItem="mhJ-AM-Bxy" secondAttribute="trailing" id="Bcc-96-WTu"/>
                         <constraint firstAttribute="trailing" secondItem="oHV-Wb-pjn" secondAttribute="trailing" id="JQh-XU-M0A"/>
                         <constraint firstAttribute="bottom" secondItem="oHV-Wb-pjn" secondAttribute="bottom" id="WXa-6u-q6B"/>
+                        <constraint firstItem="9WE-jo-AF0" firstAttribute="leading" secondItem="x1k-xy-CMX" secondAttribute="leading" id="dg2-JW-Ipo"/>
                         <constraint firstAttribute="height" constant="100" id="f6L-KC-xQL"/>
+                        <constraint firstItem="mhJ-AM-Bxy" firstAttribute="leading" secondItem="x1k-xy-CMX" secondAttribute="leading" id="fuu-ED-I4p"/>
+                        <constraint firstAttribute="trailing" secondItem="9WE-jo-AF0" secondAttribute="trailing" id="h7f-o2-yxs"/>
+                        <constraint firstAttribute="bottom" secondItem="9WE-jo-AF0" secondAttribute="bottom" id="xkk-hX-Hn3"/>
                     </constraints>
                 </view>
             </subviews>
@@ -76,7 +96,9 @@
                 <outlet property="subVCCollection" destination="LdU-WE-zAM" id="QHy-BH-xi9"/>
                 <outlet property="subVCContainer" destination="ank-aI-JYA" id="jbP-Gi-rDF"/>
                 <outlet property="subVCContainerTopConstraint" destination="EJ1-0p-Thh" id="T5a-Bu-ftD"/>
+                <outlet property="titleBottomLineView" destination="9WE-jo-AF0" id="hkD-jV-13i"/>
                 <outlet property="titleHeightConstraint" destination="Jfr-Co-88t" id="M76-X3-AXG"/>
+                <outlet property="titleTopLineView" destination="mhJ-AM-Bxy" id="YK4-9Q-3Os"/>
                 <outlet property="topBoxView" destination="x1k-xy-CMX" id="oom-cZ-4Iw"/>
                 <outlet property="topBoxViewHeightConstraint" destination="f6L-KC-xQL" id="yhf-uT-cRG"/>
             </connections>
