@@ -45,7 +45,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBoxViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subVCContainerTopConstraint;
 @property (weak, nonatomic) IBOutlet UIView *topBoxView;
-
+//
+- (void)selectOneMenuWithIndex:(NSInteger)index animated:(BOOL)animated;
 //
 - (void)reload;
 //

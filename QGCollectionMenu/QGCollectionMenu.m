@@ -311,7 +311,7 @@
     {
         [self menuChangUIByTapWithIndexPath:indexPath subVCCollectionScroll:YES];
         [self.subVCCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:self.srollSubVCAnimate];
-        [self.delegate updateSubVCWithIndex:indexPath.row];
+        
         if(self.srollSubVCAnimate) {
             collectionView.tag = 1;
         }
@@ -362,11 +362,14 @@
         UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
         
         self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-2, curCell.frame.size.width, self.lineHeight);
-        
-        if(fabs(curMove)<0.02)
+        //NSLog(@"%.2f",scrollView.contentOffset.x);
+        if(scrollView.contentOffset.x- scrollView.frame.size.width*curPageIndex == 0)
         {
             [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0] subVCCollectionScroll:NO];
-            [self.delegate updateSubVCWithIndex:curPageIndex];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.delegate updateSubVCWithIndex:curPageIndex];
+            });
+            
         }
     }
     
@@ -391,6 +394,9 @@
     self.subVCCollection.contentInset = UIEdgeInsetsMake(h, mei.left, mei.bottom, mei.right);
 }
 
+- (void)selectOneMenuWithIndex:(NSInteger)index animated:(BOOL)animated{
+    [self.subVCCollection scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
+}
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if(collectionView == self.subVCCollection)
