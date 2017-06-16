@@ -429,7 +429,7 @@
             needTransformY = -allLockedY;
         
         self.topBoxView.transform = CGAffineTransformMakeTranslation(0, needTransformY);
-        [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@(needTransformY)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
         
     }
     
