@@ -422,10 +422,15 @@
     {
         CGFloat changeY = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue].y;
         CGFloat allLockedY = self.topBoxViewHeightConstraint.constant- self.topBoxViewOrtherLockedHeight-self.titleHeightConstraint.constant;
+        CGFloat needTransformY = 0;
         if(changeY<=allLockedY)
-            self.topBoxView.transform = CGAffineTransformMakeTranslation(0, -changeY);
+            needTransformY = -changeY;
         else
-            self.topBoxView.transform = CGAffineTransformMakeTranslation(0, -allLockedY);
+            needTransformY = -allLockedY;
+        
+        self.topBoxView.transform = CGAffineTransformMakeTranslation(0, needTransformY);
+        [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@(needTransformY)];
+        
     }
     
 }

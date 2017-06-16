@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#define QGCollectionMenumTopViewOriginYDidChangeNotification @"QGCollectionMenumTopViewOriginYDidChangeNotification"
 @protocol QGCollectionMenuDataSource <NSObject>
 @required
 //
