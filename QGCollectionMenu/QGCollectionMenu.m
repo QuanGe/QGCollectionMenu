@@ -438,7 +438,7 @@
             CGFloat x = cell.frame.origin.x;
             CGFloat w = ((UIScrollView*)object).frame.size.width;
             index = x/w;
-            if (index == self.selectedMenum) {
+            if (index == self.selectedMenum && -needTransformY < (allLockedY)) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
             }
             
