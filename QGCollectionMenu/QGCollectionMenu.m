@@ -434,13 +434,16 @@
         if([self.dataSource isKindOfClass:[UIViewController class]]) {
             NSInteger index = 0;
             for (UIViewController *vc in ((UIViewController*)self.dataSource).childViewControllers) {
+                bool equal = NO;
                 for (UIView* view in vc.view.subviews) {
                     if([view isKindOfClass:[UIScrollView class]] && [view isEqual:object])
                     {
-                        
+                        equal = YES;
                         break;
                     }
                 }
+                if (equal)
+                    break;
                 index++;
             }
             
