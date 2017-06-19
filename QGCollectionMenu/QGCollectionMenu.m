@@ -433,20 +433,11 @@
         self.topBoxView.transform = CGAffineTransformMakeTranslation(0, needTransformY);
         if([self.dataSource isKindOfClass:[UIViewController class]]) {
             NSInteger index = 0;
-            for (UIViewController *vc in ((UIViewController*)self.dataSource).childViewControllers) {
-                bool equal = NO;
-                for (UIView* view in vc.view.subviews) {
-                    if([view isKindOfClass:[UIScrollView class]] && [view isEqual:object])
-                    {
-                        equal = YES;
-                        break;
-                    }
-                }
-                if (equal)
-                    break;
-                index++;
-            }
             
+            UICollectionViewCell *cell = [self theSuper:object];
+            CGFloat x = cell.frame.origin.x;
+            CGFloat w = ((UIScrollView*)object).frame.size.width;
+            index = x/w;
             if (index == self.selectedMenum) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
             }
@@ -457,5 +448,13 @@
         
     }
     
+}
+
+- (id )theSuper:(UIView*)view {
+    while (![view.superview isMemberOfClass:[UICollectionViewCell class]]) {
+        
+        view = view.superview;
+    }
+    return view.superview;
 }
 @end
