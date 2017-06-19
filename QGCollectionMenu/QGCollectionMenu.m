@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollection;
 @property (weak, nonatomic) IBOutlet UIView *subVCContainer;
 @property (weak, nonatomic) IBOutlet UICollectionView *subVCCollection;
+@property (assign, nonatomic) NSInteger selectedMenum;
 
 
 
@@ -184,7 +185,7 @@
                 self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
                 
             }];
-            
+            self.selectedMenum = 0;
             [self.delegate updateSubVCWithIndex:0];
         });
         
@@ -367,6 +368,7 @@
         {
             [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0] subVCCollectionScroll:NO];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.selectedMenum = curPageIndex;
                 [self.delegate updateSubVCWithIndex:curPageIndex];
             });
             
@@ -429,7 +431,26 @@
             needTransformY = -allLockedY;
         
         self.topBoxView.transform = CGAffineTransformMakeTranslation(0, needTransformY);
-        [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
+        if([self.dataSource isKindOfClass:[UIViewController class]]) {
+            NSInteger index = 0;
+            for (UIViewController *vc in ((UIViewController*)self.dataSource).childViewControllers) {
+                for (UIView* view in vc.view.subviews) {
+                    if([view isKindOfClass:[UIScrollView class]] && [view isEqual:object])
+                    {
+                        
+                        break;
+                    }
+                }
+                index++;
+            }
+            
+            if (index == self.selectedMenum) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
+            }
+            
+        }
+        
+        
         
     }
     
