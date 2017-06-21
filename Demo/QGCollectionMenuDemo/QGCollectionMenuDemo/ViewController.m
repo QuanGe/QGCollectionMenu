@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor orangeColor];
     self.menu.delegate = self;
     self.menu.dataSource = self;
     self.menu.menuBackGroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];

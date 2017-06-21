@@ -86,25 +86,87 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     if (self.superview && newSuperview == nil) {
-        //use self.superview, not self.scrollView. Why self.scrollView == nil here?
+        
         for (UIView *sub in self.subVCCollection.subviews) {
             if ([sub isKindOfClass:[UICollectionViewCell class]])
+                for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
+                    for (UIView* subview in view.subviews) {
+                        
+                        if([subview isKindOfClass:[UIScrollView class]])
+                        {
+                            CGFloat x = sub.frame.origin.x;
+                            CGFloat w = (subview).frame.size.width;
+                            NSInteger scrollIndex = x/w;
+                            if (scrollIndex == self.selectedMenum){
+                                [subview removeObserver:self forKeyPath:@"contentOffset"];
+                            }
+                            break;
+                        }
+                    }
+                }
+            
+        }
+    }
+}
+
+
+- (void)addObserverWithSelectedScrollIndex:(NSInteger)index {
+    for (UIView *sub in self.subVCCollection.subviews) {
+        if ([sub isKindOfClass:[UICollectionViewCell class]])
             for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
                 for (UIView* subview in view.subviews) {
                     
                     if([subview isKindOfClass:[UIScrollView class]])
                     {
-                        [subview removeObserver:self forKeyPath:@"contentOffset"];
-                        break;
+                        CGFloat x = sub.frame.origin.x;
+                        CGFloat w = (subview).frame.size.width;
+                        NSInteger scrollIndex = x/w;
+                        if(scrollIndex == index) {
+                            [subview addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+                        }
+                        else if (scrollIndex == self.selectedMenum){
+                            [subview removeObserver:self forKeyPath:@"contentOffset"];
+                        }
+                        
                     }
                 }
             }
-            
-        }
         
     }
+
 }
 
+- (void)updateOrtherScrollWithContentY:(CGFloat)contentY{
+    for (UIView *sub in self.subVCCollection.subviews) {
+        if ([sub isKindOfClass:[UICollectionViewCell class]])
+            for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
+                for (UIView* subview in view.subviews) {
+                    
+                    if([subview isKindOfClass:[UIScrollView class]])
+                    {
+                        CGFloat x = sub.frame.origin.x;
+                        CGFloat w = (subview).frame.size.width;
+                        NSInteger scrollIndex = x/w;
+                        if(self.selectedMenum != scrollIndex) {
+                            ((UIScrollView*)subview).contentOffset = CGPointMake(0, -contentY);
+                        }
+                        
+                        
+                    }
+                }
+            }
+        
+    }
+
+}
+
+- (void)setSelectedMenum:(NSInteger)selectedMenum {
+    if (_selectedMenum == selectedMenum)
+        return;
+    [self addObserverWithSelectedScrollIndex:selectedMenum];
+    _selectedMenum = selectedMenum;
+    
+}
 
 
 - (void)setTopBoxViewLocked:(BOOL)topBoxViewLocked {
@@ -148,6 +210,7 @@
     self.titleWidthEquals = NO;
     self.titleWidthEqualsAuto = YES;
     self.srollSubVCAnimate = NO;
+    self.selectedMenum = -1;
 }
 
 - (void)setLineColor:(UIColor *)lineColor
@@ -230,14 +293,6 @@
             if([childViewController respondsToSelector:@selector(updateParameters:)])
             {
                 [childViewController updateParameters:[[self.dataSource subVCClassParameters] objectAtIndex:indexPath.row]];
-            }
-            
-            for (UIView* view in childViewController.view.subviews) {
-                if([view isKindOfClass:[UIScrollView class]])
-                {
-                    [view addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-                    break;
-                }
             }
             
             childViewController.view.frame = collectionView.frame;
@@ -439,6 +494,7 @@
             CGFloat w = ((UIScrollView*)object).frame.size.width;
             index = x/w;
             if (index == self.selectedMenum && -needTransformY < (allLockedY)) {
+                [self updateOrtherScrollWithContentY:needTransformY];
                 [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
             }
             
