@@ -147,7 +147,7 @@
                         CGFloat x = sub.frame.origin.x;
                         CGFloat w = (subview).frame.size.width;
                         NSInteger scrollIndex = x/w;
-                        if(self.selectedMenum != scrollIndex) {
+                        if(self.selectedMenum != scrollIndex && ((UIScrollView*)subview).contentOffset.y != -contentY) {
                             ((UIScrollView*)subview).contentOffset = CGPointMake(0, -contentY);
                         }
                         
