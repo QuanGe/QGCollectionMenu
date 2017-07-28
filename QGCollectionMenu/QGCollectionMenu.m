@@ -18,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *subVCContainer;
 @property (weak, nonatomic) IBOutlet UICollectionView *subVCCollection;
 @property (assign, nonatomic) NSInteger selectedMenum;
-
+@property (assign, nonatomic) CGPoint gesPoint;
+@property (assign,nonatomic) CGPoint lastContentOffeset;
 
 
 @property (nonatomic,readwrite,strong) UIView * line;
@@ -217,7 +218,94 @@
     self.titleWidthEqualsAuto = YES;
     self.srollSubVCAnimate = NO;
     self.selectedMenum = -1;
+    
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDismissGesture:)];
+    [self.topBoxView  addGestureRecognizer:pan];
 }
+
+#pragma mark - Gesture handling
+
+- (void)handleDismissGesture:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    CGPoint pointEnd = [gestureRecognizer locationInView:nil];
+
+    if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    
+        // 上滑
+        NSLog(@"up");
+        for (UIView *sub in self.subVCCollection.subviews) {
+            if ([sub isKindOfClass:[UICollectionViewCell class]])
+                for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
+                    for (UIView* subview in view.subviews) {
+                        
+                        if([subview isKindOfClass:[UIScrollView class]])
+                        {
+                            CGFloat x = sub.frame.origin.x;
+                            CGFloat w = (subview).frame.size.width;
+                            NSInteger scrollIndex = x/w;
+                            if (scrollIndex == self.selectedMenum){
+                                [(UIScrollView*)subview setContentOffset:CGPointMake(0, -pointEnd.y+self.gesPoint.y+self.lastContentOffeset.y) animated:NO];
+                            }
+                            break;
+                        }
+                    }
+                }
+            
+        }
+
+    }else if(gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+        self.gesPoint = pointEnd;
+        for (UIView *sub in self.subVCCollection.subviews) {
+            if ([sub isKindOfClass:[UICollectionViewCell class]])
+                for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
+                    for (UIView* subview in view.subviews) {
+                        
+                        if([subview isKindOfClass:[UIScrollView class]])
+                        {
+                            CGFloat x = sub.frame.origin.x;
+                            CGFloat w = (subview).frame.size.width;
+                            NSInteger scrollIndex = x/w;
+                            if (scrollIndex == self.selectedMenum){
+                                self.lastContentOffeset = [(UIScrollView*)subview contentOffset];
+                            }
+                            break;
+                        }
+                    }
+                }
+            
+        }
+    }
+    else if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint v = [gestureRecognizer velocityInView:gestureRecognizer.view];
+        
+        for (UIView *sub in self.subVCCollection.subviews) {
+            if ([sub isKindOfClass:[UICollectionViewCell class]])
+                for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
+                    for (UIView* subview in view.subviews) {
+                        
+                        if([subview isKindOfClass:[UIScrollView class]])
+                        {
+                            CGFloat x = sub.frame.origin.x;
+                            CGFloat w = (subview).frame.size.width;
+                            NSInteger scrollIndex = x/w;
+                            if (scrollIndex == self.selectedMenum){
+                                [UIView animateWithDuration:0.3 animations:^{
+                                    [(UIScrollView*)subview setContentOffset:CGPointMake(0, -pointEnd.y+self.gesPoint.y-(v.y>400?400:v.y)*0.1 +self.lastContentOffeset.y)];
+                                }];
+                                //[(UIScrollView*)subview setContentOffset:CGPointMake(0, -pointEnd.y+self.gesPoint.y-v.y*0.05 +self.lastContentOffeset.y) animated:YES];
+                            }
+                            break;
+                        }
+                    }
+                }
+            
+        }
+
+    }
+}
+
 
 - (void)setLineColor:(UIColor *)lineColor
 {
