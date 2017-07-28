@@ -28,12 +28,12 @@
 @implementation QGCollectionMenu
 
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
 
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder {
     if(self.subviews.count > 0) {
@@ -43,8 +43,8 @@
     else {
         // loading storyboard
         QGCollectionMenu* view = [[[NSBundle bundleForClass:self.class] loadNibNamed:NSStringFromClass([self class])
-                                                                               owner:nil
-                                                                             options:nil] objectAtIndex:0];
+                                              owner:nil
+                                            options:nil] objectAtIndex:0];
         
         [view copyPropertiesFromPrototype:self];
         
@@ -134,7 +134,7 @@
             }
         
     }
-    
+
 }
 
 - (void)updateOrtherScrollWithContentY:(CGFloat)contentY{
@@ -148,14 +148,8 @@
                         CGFloat x = sub.frame.origin.x;
                         CGFloat w = (subview).frame.size.width;
                         NSInteger scrollIndex = x/w;
-                        if(self.selectedMenum != scrollIndex ) {
-                            CGFloat allLockedY = self.topBoxViewHeightConstraint.constant- self.topBoxViewOrtherLockedHeight-self.titleHeightConstraint.constant;
-                            if (((UIScrollView*)subview).contentOffset.y>allLockedY && -contentY== allLockedY)
-                            {
-                                
-                            }else{
-                                ((UIScrollView*)subview).contentOffset = CGPointMake(0, -contentY);
-                            }
+                        if(self.selectedMenum != scrollIndex && ((UIScrollView*)subview).contentOffset.y < -contentY) {
+                            ((UIScrollView*)subview).contentOffset = CGPointMake(0, -contentY);
                         }
                         
                         
@@ -164,7 +158,7 @@
             }
         
     }
-    
+
 }
 
 - (void)setSelectedMenum:(NSInteger)selectedMenum {
@@ -202,7 +196,7 @@
     //
     
     self.titleNormalAtrributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0],
-                                   NSFontAttributeName:[UIFont systemFontOfSize:13]};
+                                     NSFontAttributeName:[UIFont systemFontOfSize:13]};
     self.titleSelectAtrributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.8 green:0 blue:0 alpha:1.0],
                                    NSFontAttributeName:[UIFont systemFontOfSize:13]};
     self.lineColor = [UIColor colorWithRed:0.8 green:0 blue:0 alpha:1.0];
@@ -434,7 +428,7 @@
                 self.titleWidthEquals = YES;
             }
         }
-        
+
         if (self.titleWidthEquals) {
             return CGSizeMake(collectionView.bounds.size.width/[[self.dataSource menumTitles] count], self.titleHeightConstraint.constant);
         }
@@ -479,10 +473,10 @@
     
     UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:indexPath];
     if(scrool)
-        [UIView animateWithDuration:0.25 animations:^{
-            self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
-            
-        }];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+        
+    }];
     else
         self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
     
@@ -508,7 +502,7 @@
         
         int curPageIndex =  (scrollView.contentOffset.x - (int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
         CGFloat curMove = ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
-        
+    
         UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
         
         self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-2, curCell.frame.size.width, self.lineHeight);
@@ -541,7 +535,7 @@
     CGFloat h = mei.top;
     if(((UIViewController*)self.dataSource).navigationController && !((UIViewController*)self.dataSource).navigationController.navigationBarHidden)
         h = 64;
-    
+        
     self.subVCCollection.contentInset = UIEdgeInsetsMake(h, mei.left, mei.bottom, mei.right);
 }
 
@@ -580,7 +574,6 @@
             needTransformY = -allLockedY;
         
         self.topBoxView.transform = CGAffineTransformMakeTranslation(0, needTransformY);
-        
         if([self.dataSource isKindOfClass:[UIViewController class]]) {
             NSInteger index = 0;
             
@@ -588,10 +581,9 @@
             CGFloat x = cell.frame.origin.x;
             CGFloat w = ((UIScrollView*)object).frame.size.width;
             index = x/w;
-            if (index == self.selectedMenum) {
+            if (index == self.selectedMenum && -needTransformY <= (allLockedY)) {
                 [self updateOrtherScrollWithContentY:needTransformY];
                 [[NSNotificationCenter defaultCenter] postNotificationName:QGCollectionMenumTopViewOriginYDidChangeNotification object:@[@(needTransformY),object]];
-                
             }
             
         }
