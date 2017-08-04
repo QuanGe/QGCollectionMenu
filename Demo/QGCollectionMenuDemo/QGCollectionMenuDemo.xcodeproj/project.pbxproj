@@ -192,6 +192,7 @@
 				TargetAttributes = {
 					980385E41CAE1B1300736DE0 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = WUT8C6U8X9;
 					};
 				};
 			};
@@ -402,6 +403,7 @@
 			baseConfigurationReference = 95B344F121A50F16D7A24F75 /* Pods-QGCollectionMenuDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WUT8C6U8X9;
 				INFOPLIST_FILE = QGCollectionMenuDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -415,6 +417,7 @@
 			baseConfigurationReference = 488E9F5EB5A392473FC29C2D /* Pods-QGCollectionMenuDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WUT8C6U8X9;
 				INFOPLIST_FILE = QGCollectionMenuDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

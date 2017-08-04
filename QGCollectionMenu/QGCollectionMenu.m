@@ -85,6 +85,8 @@
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+    if(self.topBoxViewLocked)
+        return;
     if (self.superview && newSuperview == nil) {
         
         for (UIView *sub in self.subVCCollection.subviews) {
@@ -111,6 +113,8 @@
 
 
 - (void)addObserverWithSelectedScrollIndex:(NSInteger)index {
+    if(self.topBoxViewLocked)
+        return;
     for (UIView *sub in self.subVCCollection.subviews) {
         if ([sub isKindOfClass:[UICollectionViewCell class]])
             for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
@@ -123,9 +127,11 @@
                         NSInteger scrollIndex = x/w;
                         if(scrollIndex == index) {
                             [subview addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+                            [self  addGestureRecognizer:[(UIScrollView*)subview panGestureRecognizer]];
                         }
                         else if (scrollIndex == self.selectedMenum){
                             [subview removeObserver:self forKeyPath:@"contentOffset"];
+                            [(UIScrollView*)subview addGestureRecognizer:self.gestureRecognizers[0]];
                         }
                         
                     }
@@ -137,6 +143,8 @@
 }
 
 - (void)updateOrtherScrollWithContentY:(CGFloat)contentY{
+    if(self.topBoxViewLocked)
+        return;
     for (UIView *sub in self.subVCCollection.subviews) {
         if ([sub isKindOfClass:[UICollectionViewCell class]])
             for (UIView* view in ((UICollectionViewCell *)sub).contentView.subviews) {
@@ -300,8 +308,15 @@
             {
                 [childViewController updateParameters:[[self.dataSource subVCClassParameters] objectAtIndex:indexPath.row]];
             }
-            
             childViewController.view.frame = collectionView.frame;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                for (UIView *subView in childViewController.view.subviews) {
+                    if([subView isKindOfClass:[UIScrollView class]]){
+                        ((UIScrollView*)subView).contentOffset = CGPointMake(0, -self.topBoxView.transform.ty);
+                    }
+                }
+            });
+           
             [cell.contentView addSubview:childViewController.view];
             [(UIViewController*)self.dataSource addChildViewController:childViewController];
         }
