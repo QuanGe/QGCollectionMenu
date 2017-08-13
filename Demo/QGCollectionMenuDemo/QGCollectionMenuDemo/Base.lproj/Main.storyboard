@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jG0-hn-et2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jG0-hn-et2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="1799" y="-537"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="Ym7-jv-7Nj">
             <objects>
-                <viewController id="Yme-bL-8nP" sceneMemberID="viewController">
+                <viewController id="Yme-bL-8nP" customClass="QGHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Myc-ak-Ddl"/>
                         <viewControllerLayoutGuide type="bottom" id="vSf-Dg-Xl7"/>
@@ -59,11 +60,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wl7-CV-8bu">
-                                <rect key="frame" x="259" y="258" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wl7-CV-8bu">
+                                <rect key="frame" x="172" y="318.5" width="31" height="30"/>
                                 <state key="normal" title="跳转"/>
                                 <connections>
                                     <segue destination="9TS-Gj-r2X" kind="show" id="dfE-b9-e8Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NV-R7-Qwx">
+                                <rect key="frame" x="232" y="402.5" width="73" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="fML-hH-Y01"/>
+                                    <constraint firstAttribute="width" constant="73" id="yyD-Qp-hni"/>
+                                </constraints>
+                                <state key="normal" title="code vc"/>
+                                <connections>
+                                    <action selector="gotoCodeVc:" destination="Yme-bL-8nP" eventType="touchUpInside" id="Kak-21-cjb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -71,13 +83,15 @@
                         <constraints>
                             <constraint firstItem="wl7-CV-8bu" firstAttribute="centerX" secondItem="XIX-MX-P7A" secondAttribute="centerX" id="1cA-O5-obP"/>
                             <constraint firstItem="wl7-CV-8bu" firstAttribute="centerY" secondItem="XIX-MX-P7A" secondAttribute="centerY" id="RoG-fx-Yqt"/>
+                            <constraint firstItem="0NV-R7-Qwx" firstAttribute="top" secondItem="wl7-CV-8bu" secondAttribute="bottom" constant="54" id="clJ-kp-8Fy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0NV-R7-Qwx" secondAttribute="trailing" constant="54" id="wm4-eO-9y8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lgB-2h-YNR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbS-lk-0Zp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="-311"/>
+            <point key="canvasLocation" x="232.80000000000001" y="-311.69415292353824"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3IR-5W-Zdf">
@@ -178,7 +192,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jG0-hn-et2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nNB-kA-FWP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
