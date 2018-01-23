@@ -135,7 +135,12 @@
                             [self  addGestureRecognizer:[(UIScrollView*)subview panGestureRecognizer]];
                         }
                         else if (scrollIndex == self.selectedMenum){
-                            [subview removeObserver:self forKeyPath:@"contentOffset"];
+                            
+                            @try {
+                                [subview removeObserver:self forKeyPath:@"contentOffset"];
+                            }
+                            @catch (NSException *exception) {
+                            }
                             [(UIScrollView*)subview addGestureRecognizer:self.gestureRecognizers[0]];
                         }
                         
