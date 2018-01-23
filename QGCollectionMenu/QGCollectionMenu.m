@@ -100,7 +100,12 @@
                             CGFloat w = (subview).frame.size.width;
                             NSInteger scrollIndex = x/w;
                             if (scrollIndex == self.selectedMenum){
-                                [subview removeObserver:self forKeyPath:@"contentOffset"];
+                                @try {
+                                    [subview removeObserver:self forKeyPath:@"contentOffset"];
+                                }
+                                @catch (NSException *exception) {
+                                }
+                                
                             }
                             break;
                         }
