@@ -138,10 +138,13 @@
                             
                             @try {
                                 [subview removeObserver:self forKeyPath:@"contentOffset"];
+                                if(self.gestureRecognizers.count>0){
+                                    [(UIScrollView*)subview addGestureRecognizer:self.gestureRecognizers[0]];
+                                }
                             }
                             @catch (NSException *exception) {
                             }
-                            [(UIScrollView*)subview addGestureRecognizer:self.gestureRecognizers[0]];
+                            
                         }
                         
                     }
