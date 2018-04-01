@@ -246,6 +246,7 @@
     self.titleWidthEqualsAuto = YES;
     self.srollSubVCAnimate = NO;
     self.selectedMenum = -1;
+    self.lineInCenter = NO;
 }
 
 - (void)setLineColor:(UIColor *)lineColor
@@ -280,8 +281,11 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [UIView animateWithDuration:0.25 animations:^{
-                self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-self.lineHeight, cell.frame.size.width, self.lineHeight);
+                self.line.frame = CGRectMake(cell.frame.origin.x, self.lineInCenter?(cell.frame.size.height-self.lineHeight)/2:(cell.frame.size.height-self.lineHeight), cell.frame.size.width, self.lineHeight);
                 [self.menuCollection sendSubviewToBack:self.line];
+                if (self.lineInCenter) {
+                    self.line.layer.cornerRadius = self.lineHeight/2;
+                }
                 
             }];
             self.selectedMenum = 0;
@@ -401,7 +405,13 @@
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    if(collectionView == self.menuCollection)
+    {
+        return UIEdgeInsetsMake(0, self.titleCollectionLeftOrRightLayoutInset, 0, self.titleCollectionLeftOrRightLayoutInset);
+    }
+    else {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -429,11 +439,11 @@
     UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:indexPath];
     if(scrool)
         [UIView animateWithDuration:0.25 animations:^{
-            self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-self.lineHeight, cell.frame.size.width, self.lineHeight);
+            self.line.frame = CGRectMake(cell.frame.origin.x, self.lineInCenter?(cell.frame.size.height-self.lineHeight)/2:(cell.frame.size.height-self.lineHeight), cell.frame.size.width, self.lineHeight);
             
         }];
     else
-        self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-self.lineHeight, cell.frame.size.width, self.lineHeight);
+        self.line.frame = CGRectMake(cell.frame.origin.x, self.lineInCenter?(cell.frame.size.height-self.lineHeight)/2:(cell.frame.size.height-self.lineHeight), cell.frame.size.width, self.lineHeight);
     
     
 }
@@ -460,7 +470,7 @@
         
         UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
         
-        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-self.lineHeight, curCell.frame.size.width, self.lineHeight);
+        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, self.lineInCenter?(curCell.frame.size.height-self.lineHeight)/2:(curCell.frame.size.height-self.lineHeight), curCell.frame.size.width, self.lineHeight);
         //NSLog(@"%.2f",scrollView.contentOffset.x);
         if(scrollView.contentOffset.x- scrollView.frame.size.width*curPageIndex == 0)
         {

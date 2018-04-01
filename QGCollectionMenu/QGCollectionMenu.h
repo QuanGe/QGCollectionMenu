@@ -31,11 +31,13 @@
 @property (nonatomic,readwrite,strong) NSDictionary *titleNormalAtrributes;
 @property (nonatomic,readwrite,strong) NSDictionary *titleSelectAtrributes;
 @property (nonatomic,readwrite,assign) CGFloat titleMargin;
+@property (nonatomic,readwrite,assign) CGFloat titleCollectionLeftOrRightLayoutInset;
 @property (nonatomic,readwrite,assign) BOOL titleWidthEquals;
 @property (nonatomic,readwrite,assign) BOOL titleWidthEqualsAuto;
 @property (nonatomic,readwrite,assign) CGFloat lineHeight;
 @property (nonatomic,readwrite,strong) UIColor *lineColor;
 @property (nonatomic,readwrite,strong) UIColor *menuBackGroundColor;
+@property (nonatomic,readwrite,assign) BOOL lineInCenter;
 @property (nonatomic,readwrite,assign) BOOL topBoxViewLocked;
 @property (nonatomic,readwrite,assign) BOOL srollSubVCAnimate;
 @property (weak, nonatomic) IBOutlet UIView *titleTopLineView;

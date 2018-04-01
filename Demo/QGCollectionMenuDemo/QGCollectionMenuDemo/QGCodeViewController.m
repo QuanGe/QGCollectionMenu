@@ -32,6 +32,8 @@
     self.menu.menuBackGroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
     self.menu.lineColor = [UIColor orangeColor];
     self.menu.lineHeight = 2;
+    self.menu.titleCollectionLeftOrRightLayoutInset = 50;
+    self.menu.lineInCenter = NO;
     self.menu.topBoxViewLocked = NO;
     [self.menu reload];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
