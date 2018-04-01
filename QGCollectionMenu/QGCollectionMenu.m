@@ -389,7 +389,7 @@
         }
         
         if (self.titleWidthEquals) {
-            return CGSizeMake(collectionView.bounds.size.width/[[self.dataSource menumTitles] count], self.titleHeightConstraint.constant);
+            return CGSizeMake((collectionView.bounds.size.width-2*self.titleCollectionLeftOrRightLayoutInset)/[[self.dataSource menumTitles] count], self.titleHeightConstraint.constant);
         }
         else {
             return CGSizeMake(textRect.size.width+self.titleMargin, self.titleHeightConstraint.constant);
