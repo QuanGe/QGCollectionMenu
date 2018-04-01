@@ -34,7 +34,7 @@
  }
  */
 
-+ (QGCollectionMenu*)menu {
++ (QGCollectionMenu*)menuByCode {
     QGCollectionMenu* view = [[[NSBundle bundleForClass:self.class] loadNibNamed:NSStringFromClass([self class])
                                                                            owner:nil
                                                                          options:nil] objectAtIndex:0];

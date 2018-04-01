@@ -55,6 +55,6 @@
 //
 - (void)subVCCollectionContentInsetUpdate;
 //
-+ (QGCollectionMenu*)menu;
++ (QGCollectionMenu*)menuByCode;
 
 @end
