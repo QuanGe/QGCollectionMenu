@@ -52,4 +52,7 @@
 - (void)reload;
 //
 - (void)subVCCollectionContentInsetUpdate;
+//
++ (QGCollectionMenu*)menu;
+
 @end

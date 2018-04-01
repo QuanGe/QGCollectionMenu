@@ -34,6 +34,13 @@
  }
  */
 
++ (QGCollectionMenu*)menu {
+    QGCollectionMenu* view = [[[NSBundle bundleForClass:self.class] loadNibNamed:NSStringFromClass([self class])
+                                                                           owner:nil
+                                                                         options:nil] objectAtIndex:0];
+  
+    return view;
+}
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder {
     if(self.subviews.count > 0) {
         // loading xib
@@ -229,6 +236,7 @@
     self.line = [[UIView alloc] initWithFrame:CGRectMake(0, 38, 50, self.lineHeight)];
     self.line.backgroundColor =self.lineColor;
     [self.menuCollection addSubview:self.line];
+    
     self.titleHeightConstraint.constant = 40;
     self.titleMargin = 30;
     self.lineHeight = 2;
@@ -272,7 +280,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [UIView animateWithDuration:0.25 animations:^{
-                self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+                self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-self.lineHeight, cell.frame.size.width, self.lineHeight);
+                [self.menuCollection sendSubviewToBack:self.line];
                 
             }];
             self.selectedMenum = 0;
@@ -303,8 +312,8 @@
         QGCMCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kMenuCell forIndexPath:indexPath];
         cell.titleLabel.attributedText =  [[NSAttributedString alloc] initWithString: [[self.dataSource menumTitles] objectAtIndex:indexPath.row] attributes:indexPath.row == self.tag? self.titleSelectAtrributes: self.titleNormalAtrributes];
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
-        cell.backgroundColor =  self.menuBackGroundColor;
-        cell.titleLabel.backgroundColor = self.menuBackGroundColor;
+        cell.backgroundColor =  [UIColor clearColor];
+        cell.titleLabel.backgroundColor = [UIColor clearColor];
         return cell;
         
     }
@@ -420,11 +429,11 @@
     UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:indexPath];
     if(scrool)
         [UIView animateWithDuration:0.25 animations:^{
-            self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+            self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-self.lineHeight, cell.frame.size.width, self.lineHeight);
             
         }];
     else
-        self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-2, cell.frame.size.width, self.lineHeight);
+        self.line.frame = CGRectMake(cell.frame.origin.x, cell.frame.size.height-self.lineHeight, cell.frame.size.width, self.lineHeight);
     
     
 }
@@ -451,7 +460,7 @@
         
         UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
         
-        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-2, curCell.frame.size.width, self.lineHeight);
+        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, curCell.frame.size.height-self.lineHeight, curCell.frame.size.width, self.lineHeight);
         //NSLog(@"%.2f",scrollView.contentOffset.x);
         if(scrollView.contentOffset.x- scrollView.frame.size.width*curPageIndex == 0)
         {
