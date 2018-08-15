@@ -10,6 +10,7 @@
 #import "QGCMCollectionViewCell.h"
 #import "UIViewController+QGCollectionMenu.h"
 #import <objc/runtime.h>
+#import <objc/message.h>
 #define kMenuCell @"kQGMenuCell"
 #define kVCCell @"kQGVCCell"
 @interface QGCollectionMenu ()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -329,7 +330,15 @@
         {
             //UIViewController *childViewController = [[objc_getClass(([self.dataSource subVCClassStr]).UTF8String) alloc] init];
             UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController* childViewController=[self.dataSource subVCClassStrsForCode].count==0?[mainStoryboard instantiateViewControllerWithIdentifier:subVCClassStr]:[[objc_getClass(subVCClassStr.UTF8String) alloc] init];
+            UIViewController* childViewController= nil;
+            if ([self.dataSource subVCClassStrsForCode].count==0 ) {
+                childViewController = [mainStoryboard instantiateViewControllerWithIdentifier:subVCClassStr];
+            }else if ([objc_getClass(subVCClassStr.UTF8String) respondsToSelector:@selector(allocByMenum)]) {
+                childViewController = ((id (*)(id, SEL))objc_msgSend)(objc_getClass(subVCClassStr.UTF8String), @selector(allocByMenum));
+            }else {
+                childViewController = [[objc_getClass(subVCClassStr.UTF8String) alloc] init];
+            }
+            
             if([childViewController respondsToSelector:@selector(updateParameters:)])
             {
                 [childViewController updateParameters:[[self.dataSource subVCClassParameters] objectAtIndex:indexPath.row]];
