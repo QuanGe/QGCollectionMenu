@@ -31,6 +31,7 @@
 @property (nonatomic,readwrite,strong) NSDictionary *titleNormalAtrributes;
 @property (nonatomic,readwrite,strong) NSDictionary *titleSelectAtrributes;
 @property (nonatomic,readwrite,assign) CGFloat titleMargin;
+@property (nonatomic,readwrite,assign) CGFloat titleSpace;
 @property (nonatomic,readwrite,assign) CGFloat titleCollectionLeftOrRightLayoutInset;
 @property (nonatomic,readwrite,assign) BOOL titleWidthEquals;
 @property (nonatomic,readwrite,assign) BOOL titleWidthEqualsAuto;
