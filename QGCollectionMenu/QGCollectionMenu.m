@@ -225,6 +225,7 @@
     self.subVCCollection.delegate = self;
     self.subVCCollection.dataSource = self;
     self.subVCCollection.scrollsToTop = false;
+    self.subVCCollection.showsHorizontalScrollIndicator = NO;
     self.subVCCollection.pagingEnabled = YES;
     
     //
