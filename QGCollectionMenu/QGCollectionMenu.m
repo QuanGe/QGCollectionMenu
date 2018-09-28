@@ -443,10 +443,22 @@
         return;
     NSInteger last = self.tag;
     self.tag = indexPath.row;
-    [self.menuCollection reloadItemsAtIndexPaths:@[indexPath,[NSIndexPath indexPathForRow:last inSection:indexPath.section]]];
-    [self.menuCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    NSMutableArray *needReload = [NSMutableArray array];
+    if ([self.menuCollection cellForItemAtIndexPath:indexPath]) {
+        [needReload addObject:indexPath];
+    }
+    if ([self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:last inSection:indexPath.section]])
+    {
+        [needReload addObject:[NSIndexPath indexPathForRow:last inSection:indexPath.section]];
+    }
+    [self.menuCollection reloadItemsAtIndexPaths:needReload];
     
+    if ([self.menuCollection cellForItemAtIndexPath:indexPath]) {
+        [self.menuCollection scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    }
     UICollectionViewCell *cell = [self.menuCollection cellForItemAtIndexPath:indexPath];
+    if (!cell)
+        return;
     if(scrool)
         [UIView animateWithDuration:0.25 animations:^{
             self.line.frame = CGRectMake(cell.frame.origin.x, self.lineInCenter?(cell.frame.size.height-self.lineHeight)/2:(cell.frame.size.height-self.lineHeight), cell.frame.size.width, self.lineHeight);
