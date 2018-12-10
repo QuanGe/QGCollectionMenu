@@ -375,13 +375,15 @@
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGRect textRect = [[[self.dataSource menumTitles] objectAtIndex:indexPath.row] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30)
-                                                                                                options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                                                                             attributes:self.titleNormalAtrributes
-                                                                                                context:nil];
+    
     
     if(self.menuCollection == collectionView)
     {
+        CGRect textRect = (indexPath.row >= [self.dataSource menumTitles].count) ? CGRectMake(0, 0, 100, 100):([[[self.dataSource menumTitles] objectAtIndex:indexPath.row] boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 30)
+                                                                                                    options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                                                                 attributes:self.titleNormalAtrributes
+                                                                                                    context:nil]);
+        
         if(self.titleWidthEqualsAuto)
         {
             CGFloat allWidth = 0;
