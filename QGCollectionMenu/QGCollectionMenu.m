@@ -476,14 +476,14 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    if (self.menuCollection == collectionView) {
-        return self.titleSpace;
-    }
     return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
+    if (self.menuCollection == collectionView) {
+        return self.titleSpace;
+    }
     return 0;
 }
 
