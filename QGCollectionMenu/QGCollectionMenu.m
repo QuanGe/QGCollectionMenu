@@ -291,7 +291,8 @@
                 
             }];
             self.selectedMenum = 0;
-            [self.delegate updateSubVCWithIndex:0];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(updateSubVCWithIndex:)])
+                [self.delegate updateSubVCWithIndex:0];
         });
         
         for (NSString * subVCClassStr in [self.dataSource subVCClassStrsForStoryBoard]) {
@@ -507,7 +508,8 @@
             [self menuChangUIByTapWithIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0] subVCCollectionScroll:NO];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.selectedMenum = curPageIndex;
-                [self.delegate updateSubVCWithIndex:curPageIndex];
+                if (self.delegate && [self.delegate respondsToSelector:@selector(updateSubVCWithIndex:)])
+                    [self.delegate updateSubVCWithIndex:curPageIndex];
             });
             
         }
