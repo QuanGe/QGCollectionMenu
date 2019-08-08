@@ -501,7 +501,7 @@
         
         UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
         
-        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove, self.lineInCenter?(curCell.frame.size.height-self.lineHeight)/2:(curCell.frame.size.height-self.lineHeight), curCell.frame.size.width, self.lineHeight);
+        self.line.frame = CGRectMake(curCell.frame.origin.x+curCell.frame.size.width * curMove+ curMove*self.titleSpace, self.lineInCenter?(curCell.frame.size.height-self.lineHeight)/2:(curCell.frame.size.height-self.lineHeight), curCell.frame.size.width, self.lineHeight);
         //NSLog(@"%.2f",scrollView.contentOffset.x);
         if(scrollView.contentOffset.x- scrollView.frame.size.width*curPageIndex == 0)
         {
