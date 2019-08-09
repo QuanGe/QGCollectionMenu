@@ -504,8 +504,10 @@
             realIndex = curPageIndex +1;
         }
         if (self.tag != realIndex) {
+            NSInteger last = self.tag;
             self.tag = realIndex;
-            [self.menuCollection reloadData];
+            [self.menuCollection reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:last inSection:0]]];
+            [self.menuCollection reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:realIndex inSection:0]]];
         }
         
         
