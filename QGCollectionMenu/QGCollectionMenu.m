@@ -497,6 +497,18 @@
     {
         
         int curPageIndex =  (scrollView.contentOffset.x - (int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
+        
+        
+        int realIndex = curPageIndex;
+        if (abs( (int)scrollView.contentOffset.x%(int)scrollView.frame.size.width) > (scrollView.frame.size.width/2.0)) {
+            realIndex = curPageIndex +1;
+        }
+        if (self.tag != realIndex) {
+            self.tag = realIndex;
+            [self.menuCollection reloadData];
+        }
+        
+        
         CGFloat curMove = ((int)scrollView.contentOffset.x%(int)scrollView.frame.size.width)/scrollView.frame.size.width;
         
         UICollectionViewCell *curCell = [self.menuCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:curPageIndex inSection:0]];
