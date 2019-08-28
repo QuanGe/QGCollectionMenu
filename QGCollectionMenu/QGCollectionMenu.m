@@ -506,8 +506,10 @@
         if (self.tag != realIndex) {
             NSInteger last = self.tag;
             self.tag = realIndex;
-            [self.menuCollection reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:last inSection:0]]];
-            [self.menuCollection reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:realIndex inSection:0]]];
+            if (last<[self.menuCollection numberOfItemsInSection:0])
+                [self.menuCollection reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:last inSection:0]]];
+            if (realIndex<[self.menuCollection numberOfItemsInSection:0])
+                [self.menuCollection reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:realIndex inSection:0]]];
         }
         
         
